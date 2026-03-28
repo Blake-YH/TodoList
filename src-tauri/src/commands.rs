@@ -3,8 +3,8 @@ use tauri::State;
 use crate::{
   db::{self, DatabaseState},
   models::{
-    Category, CreateCategoryPayload, CreateTodoPayload, Todo, UpdateTodoPayload,
-    UpdateTodoStatusPayload,
+    AppSettings, Category, CreateCategoryPayload, CreateTodoPayload, Todo, UpdateLanguagePayload,
+    UpdateTodoPayload, UpdateTodoStatusPayload,
   },
 };
 
@@ -66,6 +66,12 @@ pub fn list_categories(state: State<'_, DatabaseState>) -> Result<Vec<Category>,
 }
 
 #[tauri::command]
+pub fn get_settings(state: State<'_, DatabaseState>) -> Result<AppSettings, String> {
+  let connection = state.connection.lock().map_err(|error| error.to_string())?;
+  db::get_settings(&connection).map_err(|error| error.to_string())
+}
+
+#[tauri::command]
 pub fn create_category(
   payload: CreateCategoryPayload,
   state: State<'_, DatabaseState>,
@@ -82,4 +88,17 @@ pub fn create_category(
 pub fn delete_category(category_id: String, state: State<'_, DatabaseState>) -> Result<(), String> {
   let connection = state.connection.lock().map_err(|error| error.to_string())?;
   db::delete_category(&connection, &category_id).map_err(|error| error.to_string())
+}
+
+#[tauri::command]
+pub fn update_language(
+  payload: UpdateLanguagePayload,
+  state: State<'_, DatabaseState>,
+) -> Result<AppSettings, String> {
+  if payload.language != "en" && payload.language != "zh-CN" {
+    return Err("Unsupported language.".to_string());
+  }
+
+  let connection = state.connection.lock().map_err(|error| error.to_string())?;
+  db::update_language(&connection, payload).map_err(|error| error.to_string())
 }

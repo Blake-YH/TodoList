@@ -182,3 +182,15 @@ Summary:
 - Add release notes draft
 - Add branding guide and refreshed icon source
 - Rebuild Windows installers after icon refresh
+
+#### `pending`
+
+Planned commit message:
+
+`feat: add bilingual language switching`
+
+Summary:
+
+- Add English / Simplified Chinese switching
+- Persist selected language in local settings
+- Update planning and release documents

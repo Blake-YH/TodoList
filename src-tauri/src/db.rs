@@ -6,8 +6,8 @@ use tauri::{AppHandle, Manager};
 use uuid::Uuid;
 
 use crate::models::{
-  Category, CreateCategoryPayload, CreateTodoPayload, Todo, UpdateTodoPayload,
-  UpdateTodoStatusPayload,
+  AppSettings, Category, CreateCategoryPayload, CreateTodoPayload, Todo, UpdateLanguagePayload,
+  UpdateTodoPayload, UpdateTodoStatusPayload,
 };
 
 pub struct DatabaseState {
@@ -63,6 +63,11 @@ fn run_migrations(connection: &Connection) -> rusqlite::Result<()> {
       completed_at TEXT,
       FOREIGN KEY(category_id) REFERENCES categories(id) ON DELETE SET NULL
     );
+
+    CREATE TABLE IF NOT EXISTS settings (
+      key TEXT PRIMARY KEY,
+      value TEXT NOT NULL
+    );
     ",
   )?;
 
@@ -84,7 +89,35 @@ fn run_migrations(connection: &Connection) -> rusqlite::Result<()> {
     }
   }
 
+  connection.execute(
+    "INSERT OR IGNORE INTO settings (key, value) VALUES ('language', 'en')",
+    [],
+  )?;
+
   Ok(())
+}
+
+pub fn get_settings(connection: &Connection) -> rusqlite::Result<AppSettings> {
+  let language: String = connection.query_row(
+    "SELECT value FROM settings WHERE key = 'language'",
+    [],
+    |row| row.get(0),
+  )?;
+
+  Ok(AppSettings { language })
+}
+
+pub fn update_language(
+  connection: &Connection,
+  payload: UpdateLanguagePayload,
+) -> rusqlite::Result<AppSettings> {
+  connection.execute(
+    "INSERT INTO settings (key, value) VALUES ('language', ?1)
+     ON CONFLICT(key) DO UPDATE SET value = excluded.value",
+    params![payload.language],
+  )?;
+
+  get_settings(connection)
 }
 
 pub fn list_categories(connection: &Connection) -> rusqlite::Result<Vec<Category>> {

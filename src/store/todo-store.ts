@@ -4,13 +4,16 @@ import {
   createCategory,
   createTodo,
   fetchCategories,
+  fetchSettings,
   fetchTodos,
   removeCategory,
   removeTodo,
+  updateLanguage,
   updateTodo,
   updateTodoStatus,
 } from '@/services/todos';
 import type { Category } from '@/types/category';
+import type { AppLanguage } from '@/types/settings';
 import type {
   CreateTodoInput,
   Todo,
@@ -24,11 +27,13 @@ import type {
 type TodoStore = {
   todos: Todo[];
   categories: Category[];
+  language: AppLanguage;
   query: TodoQuery;
   isBootstrapping: boolean;
   isSubmitting: boolean;
   error: string | null;
   initialize: () => Promise<void>;
+  setLanguage: (language: AppLanguage) => Promise<void>;
   setActiveFilter: (filter: TodoFilter) => void;
   setCategoryFilter: (categoryId: string) => void;
   setPriorityFilter: (priority: '' | TodoPriority) => void;
@@ -43,6 +48,7 @@ type TodoStore = {
 export const useTodoStore = create<TodoStore>((set) => ({
   todos: [],
   categories: [],
+  language: 'en',
   query: {
     filter: 'today',
     categoryId: '',
@@ -55,12 +61,31 @@ export const useTodoStore = create<TodoStore>((set) => ({
     set({ isBootstrapping: true, error: null });
 
     try {
-      const [todos, categories] = await Promise.all([fetchTodos(), fetchCategories()]);
-      set({ todos, categories, isBootstrapping: false });
+      const [todos, categories, settings] = await Promise.all([
+        fetchTodos(),
+        fetchCategories(),
+        fetchSettings(),
+      ]);
+      set({
+        todos,
+        categories,
+        language: settings.language,
+        isBootstrapping: false,
+      });
     } catch (error) {
       set({
         error: error instanceof Error ? error.message : 'Failed to initialize local data.',
         isBootstrapping: false,
+      });
+    }
+  },
+  async setLanguage(language) {
+    try {
+      const settings = await updateLanguage(language);
+      set({ language: settings.language });
+    } catch (error) {
+      set({
+        error: error instanceof Error ? error.message : 'Failed to update language.',
       });
     }
   },
@@ -169,12 +194,13 @@ export const useTodoStore = create<TodoStore>((set) => ({
               }
             : todo,
         ),
-        query: state.query.categoryId === id
-          ? {
-              ...state.query,
-              categoryId: '',
-            }
-          : state.query,
+        query:
+          state.query.categoryId === id
+            ? {
+                ...state.query,
+                categoryId: '',
+              }
+            : state.query,
       }));
     } catch (error) {
       set({

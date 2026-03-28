@@ -459,6 +459,20 @@ Open items for the next round:
 
 - Prepare packaging and release validation
 
+## 12. Latest Update
+
+Date: 2026-03-28
+
+Completed in this round:
+
+- Added English / Simplified Chinese switching
+- Added persistent language setting in the local database
+- Connected UI labels to the current language state
+
+Open items for the next round:
+
+- Final manual post-install acceptance
+
 ## 11. Latest Update
 
 Date: 2026-03-28

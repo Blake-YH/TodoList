@@ -1,6 +1,7 @@
 import { invoke } from '@tauri-apps/api/core';
 
 import type { Category } from '@/types/category';
+import type { AppLanguage, AppSettings } from '@/types/settings';
 import type { CreateTodoInput, Todo, TodoStatus, UpdateTodoInput } from '@/types/todo';
 
 type CreateCategoryInput = {
@@ -34,10 +35,18 @@ export async function fetchCategories() {
   return invoke<Category[]>('list_categories');
 }
 
+export async function fetchSettings() {
+  return invoke<AppSettings>('get_settings');
+}
+
 export async function createCategory(input: CreateCategoryInput) {
   return invoke<Category>('create_category', { payload: input });
 }
 
 export async function removeCategory(categoryId: string) {
   return invoke<void>('delete_category', { categoryId });
+}
+
+export async function updateLanguage(language: AppLanguage) {
+  return invoke<AppSettings>('update_language', { payload: { language } });
 }

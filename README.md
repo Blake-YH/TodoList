@@ -184,3 +184,11 @@ As of 2026-03-28, release wrap-up assets now also include:
 - Re-verified Windows installers after icon refresh
 
 Manual installer clicking and post-install acceptance still need to be performed locally.
+
+## Latest Progress 6
+
+As of 2026-03-28, the app now also includes:
+
+- English and Simplified Chinese language switching
+- Local persistence for the selected language
+- UI copy driven by the current language setting

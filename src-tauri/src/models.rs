@@ -24,6 +24,12 @@ pub struct Category {
   pub created_at: String,
 }
 
+#[derive(Debug, Serialize, Deserialize, Clone)]
+#[serde(rename_all = "camelCase")]
+pub struct AppSettings {
+  pub language: String,
+}
+
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CreateTodoPayload {
@@ -57,4 +63,10 @@ pub struct UpdateTodoStatusPayload {
 pub struct CreateCategoryPayload {
   pub name: String,
   pub color: String,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct UpdateLanguagePayload {
+  pub language: String,
 }

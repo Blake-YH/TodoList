@@ -24,6 +24,7 @@ It delivers a local-first desktop todo application with:
 - Todo create, edit, complete, reopen, and delete flows
 - Category creation, filtering, counting, and deletion
 - Today, All, Upcoming, Overdue, and Completed views
+- English / Simplified Chinese language switching
 - Windows installer packaging through Tauri
 
 ## Major Features

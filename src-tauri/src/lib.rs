@@ -28,8 +28,10 @@ pub fn run() {
       commands::update_todo_status,
       commands::delete_todo,
       commands::list_categories,
+      commands::get_settings,
       commands::create_category,
-      commands::delete_category
+      commands::delete_category,
+      commands::update_language
     ])
     .run(tauri::generate_context!())
     .expect("error while running tauri application");
