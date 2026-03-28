@@ -194,3 +194,15 @@ Summary:
 - Add English / Simplified Chinese switching
 - Persist selected language in local settings
 - Update planning and release documents
+
+#### `pending`
+
+Planned commit message:
+
+`docs: prepare v0.1.0 publish assets`
+
+Summary:
+
+- Add release publish checklist
+- Add GitHub Release body draft
+- Record SHA256 for Windows installers
