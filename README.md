@@ -142,3 +142,16 @@ Remaining MVP gaps:
 
 - Stronger category management UX
 - Packaging validation for Windows release
+
+## Latest Progress 3
+
+As of 2026-03-28, the repository now also includes:
+
+- Category color selection
+- Category list with todo counts
+- Category deletion
+- Category quick-filter chips in the sidebar
+
+Remaining MVP gaps:
+
+- Packaging validation for Windows release

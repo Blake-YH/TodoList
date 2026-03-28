@@ -132,3 +132,15 @@ Summary:
 - Add upcoming and overdue filters
 - Add due-date status indicators
 - Update README and MVP progress notes
+
+#### `pending`
+
+Planned commit message:
+
+`feat: improve category management workflow`
+
+Summary:
+
+- Add category color selection
+- Add category list with counts and delete action
+- Update README and MVP progress notes

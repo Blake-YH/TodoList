@@ -5,6 +5,7 @@ import {
   createTodo,
   fetchCategories,
   fetchTodos,
+  removeCategory,
   removeTodo,
   updateTodo,
   updateTodoStatus,
@@ -36,6 +37,7 @@ type TodoStore = {
   toggleTodoStatus: (id: string, status: TodoStatus) => Promise<void>;
   deleteTodo: (id: string) => Promise<void>;
   addCategory: (name: string, color: string) => Promise<void>;
+  deleteCategory: (id: string) => Promise<void>;
 };
 
 export const useTodoStore = create<TodoStore>((set) => ({
@@ -151,6 +153,32 @@ export const useTodoStore = create<TodoStore>((set) => ({
     } catch (error) {
       set({
         error: error instanceof Error ? error.message : 'Failed to create category.',
+      });
+    }
+  },
+  async deleteCategory(id) {
+    try {
+      await removeCategory(id);
+      set((state) => ({
+        categories: state.categories.filter((category) => category.id !== id),
+        todos: state.todos.map((todo) =>
+          todo.categoryId === id
+            ? {
+                ...todo,
+                categoryId: null,
+              }
+            : todo,
+        ),
+        query: state.query.categoryId === id
+          ? {
+              ...state.query,
+              categoryId: '',
+            }
+          : state.query,
+      }));
+    } catch (error) {
+      set({
+        error: error instanceof Error ? error.message : 'Failed to delete category.',
       });
     }
   },

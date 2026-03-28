@@ -99,6 +99,67 @@ button {
   gap: 14px;
 }
 
+.category-list {
+  display: grid;
+  gap: 10px;
+}
+
+.category-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: center;
+}
+
+.category-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  padding: 10px 12px;
+  cursor: pointer;
+}
+
+.category-chip.is-selected {
+  border-color: rgba(243, 165, 34, 0.4);
+  background: rgba(243, 165, 34, 0.12);
+}
+
+.category-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+.category-count {
+  margin-left: auto;
+  color: var(--muted);
+}
+
+.color-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.color-swatch {
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+
+.color-swatch.is-selected {
+  border-color: #fff;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.12);
+}
+
 .nav-item {
   border: 1px solid transparent;
   background: rgba(255, 255, 255, 0.03);

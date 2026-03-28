@@ -430,3 +430,18 @@ Open items for the next round:
 
 - Improve category management
 - Prepare packaging and release validation
+
+## 10. Latest Update
+
+Date: 2026-03-28
+
+Completed in this round:
+
+- Added category color selection
+- Added category list with todo counts
+- Added category deletion
+- Improved category filtering UX
+
+Open items for the next round:
+
+- Prepare packaging and release validation

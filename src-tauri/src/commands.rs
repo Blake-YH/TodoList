@@ -77,3 +77,9 @@ pub fn create_category(
   let connection = state.connection.lock().map_err(|error| error.to_string())?;
   db::create_category(&connection, payload).map_err(|error| error.to_string())
 }
+
+#[tauri::command]
+pub fn delete_category(category_id: String, state: State<'_, DatabaseState>) -> Result<(), String> {
+  let connection = state.connection.lock().map_err(|error| error.to_string())?;
+  db::delete_category(&connection, &category_id).map_err(|error| error.to_string())
+}

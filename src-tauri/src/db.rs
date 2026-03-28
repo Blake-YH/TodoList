@@ -123,6 +123,11 @@ pub fn create_category(
   Ok(category)
 }
 
+pub fn delete_category(connection: &Connection, category_id: &str) -> rusqlite::Result<()> {
+  connection.execute("DELETE FROM categories WHERE id = ?1", params![category_id])?;
+  Ok(())
+}
+
 pub fn list_todos(connection: &Connection) -> rusqlite::Result<Vec<Todo>> {
   let mut statement = connection.prepare(
     "

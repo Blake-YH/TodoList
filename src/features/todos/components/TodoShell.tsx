@@ -7,6 +7,8 @@ import { selectMetrics, selectVisibleTodos, useTodoStore } from '@/store/todo-st
 import type { Category } from '@/types/category';
 import type { TodoFilter, TodoPriority, TodoStatus } from '@/types/todo';
 
+const categoryColors = ['#F3A522', '#3AC28C', '#6EA8FE', '#F472B6', '#A78BFA', '#F97316'];
+
 const priorityLabel: Record<TodoPriority, string> = {
   low: 'Low',
   medium: 'Medium',
@@ -28,6 +30,7 @@ const filterLabel: Record<TodoFilter, string> = {
 
 export function TodoShell() {
   const [categoryName, setCategoryName] = useState('');
+  const [categoryColor, setCategoryColor] = useState(categoryColors[0]);
   const [editingTodoId, setEditingTodoId] = useState<string | null>(null);
   const todos = useTodoStore((state) => state.todos);
   const categories = useTodoStore((state) => state.categories);
@@ -44,6 +47,7 @@ export function TodoShell() {
   const toggleTodoStatus = useTodoStore((state) => state.toggleTodoStatus);
   const deleteTodo = useTodoStore((state) => state.deleteTodo);
   const addCategory = useTodoStore((state) => state.addCategory);
+  const deleteCategory = useTodoStore((state) => state.deleteCategory);
 
   const form = useForm<TodoFormValues>({
     resolver: zodResolver(todoFormSchema),
@@ -94,8 +98,9 @@ export function TodoShell() {
       return;
     }
 
-    await addCategory(trimmed, '#F3A522');
+    await addCategory(trimmed, categoryColor);
     setCategoryName('');
+    setCategoryColor(categoryColors[0]);
   }
 
   function beginEdit(todoId: string) {
@@ -152,7 +157,7 @@ export function TodoShell() {
         </nav>
 
         <section className="sidebar-panel">
-          <p className="eyebrow">Quick Category</p>
+          <p className="eyebrow">Category Studio</p>
           <div className="inline-row">
             <input
               className="text-input"
@@ -164,6 +169,38 @@ export function TodoShell() {
               Add
             </button>
           </div>
+
+          <div className="color-row" role="list" aria-label="Category colors">
+            {categoryColors.map((color) => (
+              <button
+                aria-label={`Choose color ${color}`}
+                className={`color-swatch ${categoryColor === color ? 'is-selected' : ''}`}
+                key={color}
+                onClick={() => setCategoryColor(color)}
+                style={{ backgroundColor: color }}
+                type="button"
+              />
+            ))}
+          </div>
+
+          <div className="category-list">
+            {categories.map((category) => (
+              <article className="category-card" key={category.id}>
+                <button
+                  className={`category-chip ${query.categoryId === category.id ? 'is-selected' : ''}`}
+                  onClick={() => setCategoryFilter(query.categoryId === category.id ? '' : category.id)}
+                  type="button"
+                >
+                  <span className="category-dot" style={{ backgroundColor: category.color }} />
+                  <span>{category.name}</span>
+                  <span className="category-count">{countTodosByCategory(todos, category.id)}</span>
+                </button>
+                <button className="ghost-button" onClick={() => deleteCategory(category.id)} type="button">
+                  Remove
+                </button>
+              </article>
+            ))}
+          </div>
         </section>
       </aside>
 
@@ -171,8 +208,8 @@ export function TodoShell() {
         <header className="hero-panel">
           <div>
             <p className="eyebrow">MVP Scaffold</p>
-            <h2>Editing and layered filtering are now in the core workflow.</h2>
-            <p className="hero-copy">Next up: richer due-date views, stronger category controls, and packaging readiness.</p>
+            <h2>Categories now behave like a real management layer, not a passive dropdown.</h2>
+            <p className="hero-copy">Next up: packaging readiness and the last round of MVP hardening.</p>
           </div>
         </header>
 
@@ -356,6 +393,10 @@ function resolveCategoryName(categoryId: string | null, categories: Category[]) 
   return categories.find((category) => category.id === categoryId)?.name ?? 'Inbox';
 }
 
+function countTodosByCategory(todos: { categoryId: string | null }[], categoryId: string) {
+  return todos.filter((todo) => todo.categoryId === categoryId).length;
+}
+
 function formatDueLabel(dueDate: string | null, status: TodoStatus) {
   const today = new Date().toISOString().slice(0, 10);
 
@@ -373,11 +414,11 @@ function formatDueLabel(dueDate: string | null, status: TodoStatus) {
   }
 
   if (value < today) {
-    return `Overdue · ${value}`;
+    return `Overdue | ${value}`;
   }
 
   if (value > today) {
-    return `Upcoming · ${value}`;
+    return `Upcoming | ${value}`;
   }
 
   return dueDate.slice(0, 10);

@@ -37,3 +37,7 @@ export async function fetchCategories() {
 export async function createCategory(input: CreateCategoryInput) {
   return invoke<Category>('create_category', { payload: input });
 }
+
+export async function removeCategory(categoryId: string) {
+  return invoke<void>('delete_category', { categoryId });
+}
