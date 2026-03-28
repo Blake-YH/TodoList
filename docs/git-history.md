@@ -156,3 +156,17 @@ Summary:
 - Add release guide
 - Record successful MSI and NSIS package outputs
 - Update README and MVP progress notes
+
+#### `pending`
+
+Planned commit message:
+
+`docs: finalize release wrap-up assets`
+
+Summary:
+
+- Make release guide bilingual
+- Add manual acceptance checklist
+- Add release notes draft
+- Add branding guide and refreshed icon source
+- Rebuild Windows installers after icon refresh

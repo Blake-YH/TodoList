@@ -171,3 +171,16 @@ Current MVP status:
 - Category management is implemented
 - Date-based list views are implemented
 - Windows packaging is verified
+
+## Latest Progress 5
+
+As of 2026-03-28, release wrap-up assets now also include:
+
+- Bilingual release guide
+- Manual acceptance checklist
+- Release notes draft for `v0.1.0`
+- Refined branded SVG icon source
+- Regenerated Tauri icon assets
+- Re-verified Windows installers after icon refresh
+
+Manual installer clicking and post-install acceptance still need to be performed locally.
