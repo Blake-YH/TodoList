@@ -206,3 +206,4 @@ Summary:
 - Add release publish checklist
 - Add GitHub Release body draft
 - Record SHA256 for Windows installers
+- Correct v0.1.0 release hashes after rebuilding installers with language switching support

@@ -46,8 +46,8 @@ This is the first MVP release of TodoList for Windows.
 
 ### SHA256
 
-- MSI: `8de0d6587c2d2c97a83334c0e878b30a354db9fa4a26f1194ea9f5027179ed17`
-- NSIS: `380cfad2055d1d09cbc6cdd5b7c67762f078a7353e74b076fd899ee5937e0e50`
+- MSI: `6af4ba8db2c315393a702f82caebfbe4f331c2a6f32317cacd315bb1bac02fbe`
+- NSIS: `80c3f9cd84bf7ea8abfa5b339f25e56622147aff789a1e73eda8d5caa19735e8`
 
 ### Known Limitations
 
@@ -63,3 +63,10 @@ This is the first MVP release of TodoList for Windows.
 - 暂未加入系统托盘
 - 暂未加入数据导入导出
 ```
+
+## Release Asset Correction
+
+- Replace any previously uploaded `v0.1.0` assets with the rebuilt installers generated after commit `c72071c`
+- Correct MSI: `D:\VibeCoding_project\TodoList\src-tauri\target\release\bundle\msi\TodoList_0.1.0_x64_en-US.msi`
+- Correct NSIS: `D:\VibeCoding_project\TodoList\src-tauri\target\release\bundle\nsis\TodoList_0.1.0_x64-setup.exe`
+- This rebuild includes the English / Simplified Chinese language switching feature

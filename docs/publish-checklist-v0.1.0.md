@@ -23,8 +23,8 @@
 
 ## SHA256
 
-- MSI: `8de0d6587c2d2c97a83334c0e878b30a354db9fa4a26f1194ea9f5027179ed17`
-- NSIS: `380cfad2055d1d09cbc6cdd5b7c67762f078a7353e74b076fd899ee5937e0e50`
+- MSI: `6af4ba8db2c315393a702f82caebfbe4f331c2a6f32317cacd315bb1bac02fbe`
+- NSIS: `80c3f9cd84bf7ea8abfa5b339f25e56622147aff789a1e73eda8d5caa19735e8`
 
 ## Pre-Release Checks
 
@@ -58,6 +58,11 @@ Recommended upload set:
 
 - `TodoList_0.1.0_x64_en-US.msi`
 - `TodoList_0.1.0_x64-setup.exe`
+
+Replacement note:
+
+- If `v0.1.0` assets were uploaded before the language switching rebuild, delete the old GitHub Release assets and upload the rebuilt installers again
+- Keep only the installers matching the SHA256 values in this document
 
 Recommended description source:
 

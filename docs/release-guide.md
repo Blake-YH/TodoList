@@ -88,6 +88,13 @@ Verified successful outputs / 已验证成功的产物：
 - `src-tauri\target\release\bundle\msi\TodoList_0.1.0_x64_en-US.msi`
 - `src-tauri\target\release\bundle\nsis\TodoList_0.1.0_x64-setup.exe`
 
+SHA256 / 鍝堝笇鍊硷細
+- MSI: `6af4ba8db2c315393a702f82caebfbe4f331c2a6f32317cacd315bb1bac02fbe`
+- NSIS: `80c3f9cd84bf7ea8abfa5b339f25e56622147aff789a1e73eda8d5caa19735e8`
+
+Release note / 鍙戝竷璇存槑锛?
+- If an older `v0.1.0` installer was uploaded before the language switching rebuild, it must be replaced before release
+
 Build result / 构建结果：
 
 - `cargo tauri build` completed successfully

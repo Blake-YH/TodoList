@@ -1,8 +1,13 @@
 # GitHub Release 发布操作文档
 
+## 中文说明
+
+这份文档用于指导 `v0.1.0` 的 GitHub Release 发布与修正。
+当前需要特别注意的是：GitHub 上已经上传过一次旧安装包，而那一版不包含“中英文切换”功能，因此必须先替换旧附件，再更新 Release 正文中的 SHA256。
+
 ## 1. Release 标题
 
-可直接复制：
+直接填写：
 
 ```text
 v0.1.0
@@ -10,13 +15,12 @@ v0.1.0
 
 ## 2. Release 正文
 
-可直接复制到 GitHub Release 的正文输入框：
+可直接复制到 GitHub Release 正文输入框：
 
 ```md
 ## TodoList v0.1.0
 
-TodoList 的首个 MVP 版本已经可用。
-
+TodoList 的首个 MVP 版本现已可用。
 This is the first MVP release of TodoList for Windows.
 
 ### Included In This Version
@@ -46,8 +50,8 @@ This is the first MVP release of TodoList for Windows.
 
 ### SHA256
 
-- MSI: `8de0d6587c2d2c97a83334c0e878b30a354db9fa4a26f1194ea9f5027179ed17`
-- NSIS: `380cfad2055d1d09cbc6cdd5b7c67762f078a7353e74b076fd899ee5937e0e50`
+- MSI: `6af4ba8db2c315393a702f82caebfbe4f331c2a6f32317cacd315bb1bac02fbe`
+- NSIS: `80c3f9cd84bf7ea8abfa5b339f25e56622147aff789a1e73eda8d5caa19735e8`
 
 ### Known Limitations
 
@@ -64,111 +68,57 @@ This is the first MVP release of TodoList for Windows.
 - 暂未加入数据导入导出
 ```
 
-## 3. 附件清单
+## 3. 正确附件清单
 
-发布时上传以下两个文件：
+本次发布必须上传以下重新打包后的文件：
 
 - `D:\VibeCoding_project\TodoList\src-tauri\target\release\bundle\msi\TodoList_0.1.0_x64_en-US.msi`
 - `D:\VibeCoding_project\TodoList\src-tauri\target\release\bundle\nsis\TodoList_0.1.0_x64-setup.exe`
 
-## 4. 创建 Git Tag
+## 4. 旧附件修正说明
 
-在项目根目录执行：
+如果你之前已经在 GitHub 的 `v0.1.0` Release 中上传过安装包，需要先删除旧附件，再重新上传上面的两个新文件。
 
-```bash
-git tag v0.1.0
-```
+原因：
 
-查看 tag 是否创建成功：
+- 旧附件打包时间早于语言切换功能合入
+- 旧附件安装后看不到 Language 相关切换入口
+- 当前正确附件已经包含中英文切换能力
 
-```bash
-git tag
-```
+## 5. 在 GitHub 页面手工修正 Release
 
-如果输出里能看到 `v0.1.0`，说明本地 tag 已创建成功。
+按下面步骤操作：
 
-## 5. 推送 Tag 到 GitHub
+1. 打开 `https://github.com/Blake-YH/TodoList/releases/tag/v0.1.0`
+2. 点击 `Edit`
+3. 在 `Assets` 区域删除旧的 MSI 和 EXE 附件
+4. 上传以下两个新文件
+   - `D:\VibeCoding_project\TodoList\src-tauri\target\release\bundle\msi\TodoList_0.1.0_x64_en-US.msi`
+   - `D:\VibeCoding_project\TodoList\src-tauri\target\release\bundle\nsis\TodoList_0.1.0_x64-setup.exe`
+5. 将 Release 正文中的 SHA256 更新为本文档第 2 节给出的新值
+6. 点击 `Update release`
 
-执行：
+## 6. 如果要重新创建 Release
 
-```bash
-git push origin v0.1.0
-```
+也可以删除原有附件后直接编辑，不一定要新建 Release。
+如果你想重新走一次发布流程，可按下面步骤执行：
 
-如果你想把所有本地 tag 一次性推送，也可以执行：
-
-```bash
-git push --tags
-```
-
-但当前更建议只推送这一个版本 tag：
-
-```bash
-git push origin v0.1.0
-```
-
-## 6. 在 GitHub 上发布 Release
-
-### 方式一：从 Releases 页面创建
-
-1. 打开你的仓库：
-   `https://github.com/Blake-YH/TodoList`
-2. 点击右侧或顶部的 `Releases`
-3. 点击 `Draft a new release`
-4. 在 `Choose a tag` 中选择：
-   `v0.1.0`
-5. `Release title` 填：
-   `v0.1.0`
-6. 把本文件中“Release 正文”整段复制进去
-7. 上传两个安装包附件
+1. 打开仓库：`https://github.com/Blake-YH/TodoList`
+2. 点击 `Releases`
+3. 选择已有的 `v0.1.0`，或者点击创建新 Release
+4. `Choose a tag` 选择 `v0.1.0`
+5. `Release title` 填写 `v0.1.0`
+6. 粘贴本文档第 2 节的正文
+7. 上传两个正确的安装包
 8. 确认不是 `Set as a pre-release`
-9. 点击 `Publish release`
+9. 点击 `Publish release` 或 `Update release`
 
-### 方式二：直接通过标签页创建
+## 7. 最后确认
 
-1. 打开仓库主页
-2. 点击 `Tags`
-3. 找到 `v0.1.0`
-4. 点击 `Create release`
-5. 然后重复上面的标题、正文、附件上传步骤
+在最终发布前，确认以下事项：
 
-## 7. 建议的 GitHub Release 设置
-
-- Tag：`v0.1.0`
-- Release title：`v0.1.0`
-- Target：`main`
-- Latest release：开启
-- Pre-release：关闭
-
-## 8. 发布前最后确认
-
-在点击 `Publish release` 之前，建议你确认：
-
-- 当前代码已经推送到 GitHub
-- `v0.1.0` tag 已经推送到 GitHub
-- 两个安装包附件都已上传
-- Release 正文已经粘贴完整
-- SHA256 已保留在正文里
-
-## 9. 最短操作路径
-
-如果你只想最快发布，按下面做：
-
-1. 在本地执行：
-
-```bash
-git tag v0.1.0
-git push origin v0.1.0
-```
-
-2. 打开：
-
-```text
-https://github.com/Blake-YH/TodoList/releases/new
-```
-
-3. 选择 `v0.1.0`
-4. 标题填 `v0.1.0`
-5. 粘贴正文
-6. 上传两个安装包
-7. 点击 `Publish release`
+- 当前 `main` 分支代码已经推送到 GitHub
+- `v0.1.0` tag 已存在并已推送
+- Release 附件已替换为新安装包
+- Release 正文中的 SHA256 已更新为新值
+- 重新下载并安装后，可以看到中英文切换功能
