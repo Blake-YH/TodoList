@@ -144,3 +144,15 @@ Summary:
 - Add category color selection
 - Add category list with counts and delete action
 - Update README and MVP progress notes
+
+#### `pending`
+
+Planned commit message:
+
+`docs: add packaging validation and release guide`
+
+Summary:
+
+- Add release guide
+- Record successful MSI and NSIS package outputs
+- Update README and MVP progress notes

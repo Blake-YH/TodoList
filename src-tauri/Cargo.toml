@@ -3,8 +3,8 @@ name = "todolist"
 version = "0.1.0"
 description = "A lightweight desktop Todo application"
 authors = ["Blake-YH"]
-license = ""
-repository = ""
+license = "MIT"
+repository = "https://github.com/Blake-YH/TodoList"
 edition = "2021"
 rust-version = "1.77.2"
 
@@ -15,7 +15,7 @@ name = "todolist_lib"
 crate-type = ["staticlib", "cdylib", "rlib"]
 
 [build-dependencies]
-tauri-build = { version = "2.5.6" }
+tauri-build = { version = "2.5.6", features = [] }
 
 [dependencies]
 chrono = { version = "0.4", features = ["serde"] }
@@ -23,6 +23,6 @@ rusqlite = { version = "0.32", features = ["bundled"] }
 serde_json = "1.0"
 serde = { version = "1.0", features = ["derive"] }
 log = "0.4"
-tauri = { version = "2.10.3" }
+tauri = { version = "2.10.3", features = [] }
 tauri-plugin-log = "2"
 uuid = { version = "1.18", features = ["v4", "serde"] }

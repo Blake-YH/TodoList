@@ -28,6 +28,10 @@
   "bundle": {
     "active": true,
     "targets": "all",
+    "category": "Productivity",
+    "shortDescription": "A lightweight local-first desktop todo app.",
+    "longDescription": "TodoList is a lightweight local-first desktop todo application for Windows, built with Tauri, React, TypeScript, and SQLite.",
+    "publisher": "Blake-YH",
     "icon": [
       "icons/32x32.png",
       "icons/128x128.png",
