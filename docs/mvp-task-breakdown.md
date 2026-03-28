@@ -415,3 +415,18 @@ Open items for the next round:
 - Add overdue and date-focused views
 - Improve category management
 - Prepare packaging and release validation
+
+## 9. Latest Update
+
+Date: 2026-03-28
+
+Completed in this round:
+
+- Added upcoming view
+- Added overdue view
+- Added due-date visual states and overdue metric
+
+Open items for the next round:
+
+- Improve category management
+- Prepare packaging and release validation

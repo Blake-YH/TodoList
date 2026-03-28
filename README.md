@@ -128,3 +128,17 @@ Remaining MVP gaps:
 - Overdue and date-focused views
 - Stronger category management UX
 - Packaging validation for Windows release
+
+## Latest Progress 2
+
+As of 2026-03-28, the repository now also includes:
+
+- Upcoming view
+- Overdue view
+- Due-date visual status tags
+- Overdue count in dashboard metrics
+
+Remaining MVP gaps:
+
+- Stronger category management UX
+- Packaging validation for Windows release

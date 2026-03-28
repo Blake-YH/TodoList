@@ -174,6 +174,26 @@ export function selectVisibleTodos(todos: Todo[], query: TodoQuery) {
     });
   }
 
+  if (query.filter === 'upcoming') {
+    result = result.filter((todo) => {
+      if (todo.status === 'completed' || !todo.dueDate) {
+        return false;
+      }
+
+      return todo.dueDate.slice(0, 10) > today;
+    });
+  }
+
+  if (query.filter === 'overdue') {
+    result = result.filter((todo) => {
+      if (todo.status === 'completed' || !todo.dueDate) {
+        return false;
+      }
+
+      return todo.dueDate.slice(0, 10) < today;
+    });
+  }
+
   if (query.categoryId) {
     result = result.filter((todo) => todo.categoryId === query.categoryId);
   }
@@ -186,9 +206,14 @@ export function selectVisibleTodos(todos: Todo[], query: TodoQuery) {
 }
 
 export function selectMetrics(todos: Todo[]) {
+  const today = new Date().toISOString().slice(0, 10);
+
   return {
     total: todos.length,
     completed: todos.filter((todo) => todo.status === 'completed').length,
     highPriority: todos.filter((todo) => todo.priority === 'high' && todo.status === 'pending').length,
+    overdue: todos.filter(
+      (todo) => todo.status === 'pending' && Boolean(todo.dueDate) && todo.dueDate!.slice(0, 10) < today,
+    ).length,
   };
 }

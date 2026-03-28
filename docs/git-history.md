@@ -120,3 +120,15 @@ Summary:
 - Add todo editing support
 - Add category and priority filters
 - Update README and MVP progress notes
+
+#### `pending`
+
+Planned commit message:
+
+`feat: add overdue and upcoming todo views`
+
+Summary:
+
+- Add upcoming and overdue filters
+- Add due-date status indicators
+- Update README and MVP progress notes

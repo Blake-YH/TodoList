@@ -2,7 +2,7 @@ export type TodoStatus = 'pending' | 'completed';
 
 export type TodoPriority = 'low' | 'medium' | 'high';
 
-export type TodoFilter = 'today' | 'all' | 'completed';
+export type TodoFilter = 'today' | 'all' | 'completed' | 'upcoming' | 'overdue';
 
 export type Todo = {
   id: string;

@@ -22,6 +22,8 @@ const filterLabel: Record<TodoFilter, string> = {
   today: 'Today',
   all: 'All todos',
   completed: 'Completed',
+  upcoming: 'Upcoming',
+  overdue: 'Overdue',
 };
 
 export function TodoShell() {
@@ -137,7 +139,7 @@ export function TodoShell() {
         </div>
 
         <nav className="nav-list" aria-label="Primary">
-          {(['today', 'all', 'completed'] as TodoFilter[]).map((filter) => (
+          {(['today', 'all', 'upcoming', 'overdue', 'completed'] as TodoFilter[]).map((filter) => (
             <button
               className={`nav-item ${query.filter === filter ? 'is-active' : ''}`}
               key={filter}
@@ -187,6 +189,10 @@ export function TodoShell() {
             <div>
               <span className="metric-value">{metrics.highPriority.toString().padStart(2, '0')}</span>
               <span className="metric-label">High priority</span>
+            </div>
+            <div>
+              <span className="metric-value">{metrics.overdue.toString().padStart(2, '0')}</span>
+              <span className="metric-label">Overdue</span>
             </div>
           </article>
 
@@ -317,7 +323,9 @@ export function TodoShell() {
                     <span className={`priority-tag priority-${todo.priority}`}>
                       {priorityLabel[todo.priority]}
                     </span>
-                    <span className="due-tag">{formatDueLabel(todo.dueDate, todo.status)}</span>
+                    <span className={`due-tag ${getDueTone(todo.dueDate, todo.status)}`}>
+                      {formatDueLabel(todo.dueDate, todo.status)}
+                    </span>
                     <button className="secondary-button" onClick={() => beginEdit(todo.id)} type="button">
                       Edit
                     </button>
@@ -349,6 +357,8 @@ function resolveCategoryName(categoryId: string | null, categories: Category[]) 
 }
 
 function formatDueLabel(dueDate: string | null, status: TodoStatus) {
+  const today = new Date().toISOString().slice(0, 10);
+
   if (status === 'completed') {
     return 'Done';
   }
@@ -357,5 +367,37 @@ function formatDueLabel(dueDate: string | null, status: TodoStatus) {
     return 'No due date';
   }
 
+  const value = dueDate.slice(0, 10);
+  if (value === today) {
+    return 'Due today';
+  }
+
+  if (value < today) {
+    return `Overdue · ${value}`;
+  }
+
+  if (value > today) {
+    return `Upcoming · ${value}`;
+  }
+
   return dueDate.slice(0, 10);
+}
+
+function getDueTone(dueDate: string | null, status: TodoStatus) {
+  const today = new Date().toISOString().slice(0, 10);
+
+  if (status === 'completed' || !dueDate) {
+    return '';
+  }
+
+  const value = dueDate.slice(0, 10);
+  if (value < today) {
+    return 'due-overdue';
+  }
+
+  if (value === today) {
+    return 'due-today';
+  }
+
+  return 'due-upcoming';
 }
