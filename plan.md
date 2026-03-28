@@ -530,3 +530,53 @@ SQLite 会明显更稳。
 基于以上推导，正式推荐技术栈为：
 
 **Tauri + React + TypeScript + Vite + SQLite + Zustand**
+
+---
+
+## 14. 本地开发环境注意事项
+
+结合当前机器环境，正式开发时需要遵守以下约束：
+
+### 14.1 Windows 桌面编译环境
+
+- 本机已安装 Visual Studio 2022 Community、MSVC 和 Windows SDK
+- 但普通 PowerShell 会话默认不能直接识别 `cl.exe`
+- 运行 Tauri 桌面相关命令前，优先进入 Visual Studio 开发者环境
+
+推荐方式：
+
+1. 使用 “x64 Native Tools Command Prompt for VS 2022”
+2. 或运行仓库脚本 `scripts\\vs-dev-shell.cmd`
+
+### 14.2 Node 包管理命令
+
+- 当前 PowerShell 执行策略会拦截 `npm.ps1`
+- 因此在本机 PowerShell 中优先使用 `npm.cmd`
+
+例如：
+
+- `npm.cmd install`
+- `npm.cmd run dev`
+
+### 14.3 开发前检查
+
+仓库已提供环境检查脚本：
+
+- `scripts\\check-dev-env.cmd`
+
+该脚本用于快速确认以下工具是否可用：
+
+- `cl`
+- `cargo`
+- `rustc`
+- `cargo tauri`
+
+### 14.4 工程实施约束
+
+为了减少环境问题导致的返工，开发顺序约束如下：
+
+1. 先在可识别 `cl.exe` 的终端里初始化和运行 Tauri
+2. 再安装前端依赖与数据库依赖
+3. 再进入 Todo MVP 功能开发
+
+这部分不是产品需求，而是当前机器环境下的实际工程约束，必须纳入执行计划。
