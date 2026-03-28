@@ -24,3 +24,13 @@ export type CreateTodoInput = {
   categoryId?: string | null;
   dueDate?: string | null;
 };
+
+export type UpdateTodoInput = CreateTodoInput & {
+  id: string;
+};
+
+export type TodoQuery = {
+  filter: TodoFilter;
+  categoryId: string;
+  priority: '' | TodoPriority;
+};

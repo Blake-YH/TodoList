@@ -1,7 +1,7 @@
 import { invoke } from '@tauri-apps/api/core';
 
 import type { Category } from '@/types/category';
-import type { CreateTodoInput, Todo, TodoStatus } from '@/types/todo';
+import type { CreateTodoInput, Todo, TodoStatus, UpdateTodoInput } from '@/types/todo';
 
 type CreateCategoryInput = {
   name: string;
@@ -14,6 +14,10 @@ export async function fetchTodos() {
 
 export async function createTodo(input: CreateTodoInput) {
   return invoke<Todo>('create_todo', { payload: input });
+}
+
+export async function updateTodo(input: UpdateTodoInput) {
+  return invoke<Todo>('update_todo', { payload: input });
 }
 
 export async function updateTodoStatus(id: string, status: TodoStatus) {

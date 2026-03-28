@@ -114,3 +114,17 @@ TodoList/
 1. 实现 Todo 编辑与更完整的筛选
 2. 完善分类管理和错误处理
 3. 开始准备 MVP 打包链路
+## Latest Progress
+
+As of 2026-03-28, the repository now also includes:
+
+- Todo editing
+- Category filter
+- Priority filter
+- Extended Tauri command support for updating todos
+
+Remaining MVP gaps:
+
+- Overdue and date-focused views
+- Stronger category management UX
+- Packaging validation for Windows release

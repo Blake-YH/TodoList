@@ -5,7 +5,10 @@ use rusqlite::{params, Connection};
 use tauri::{AppHandle, Manager};
 use uuid::Uuid;
 
-use crate::models::{Category, CreateCategoryPayload, CreateTodoPayload, Todo, UpdateTodoStatusPayload};
+use crate::models::{
+  Category, CreateCategoryPayload, CreateTodoPayload, Todo, UpdateTodoPayload,
+  UpdateTodoStatusPayload,
+};
 
 pub struct DatabaseState {
   pub connection: Mutex<Connection>,
@@ -186,6 +189,29 @@ pub fn create_todo(connection: &Connection, payload: CreateTodoPayload) -> rusql
   )?;
 
   Ok(todo)
+}
+
+pub fn update_todo(connection: &Connection, payload: UpdateTodoPayload) -> rusqlite::Result<Todo> {
+  let now = Utc::now().to_rfc3339();
+
+  connection.execute(
+    "
+    UPDATE todos
+    SET title = ?1, description = ?2, priority = ?3, category_id = ?4, due_date = ?5, updated_at = ?6
+    WHERE id = ?7
+    ",
+    params![
+      payload.title.trim(),
+      payload.description.and_then(trimmed_or_none),
+      payload.priority,
+      payload.category_id.and_then(trimmed_or_none),
+      payload.due_date.and_then(trimmed_or_none),
+      now,
+      payload.id,
+    ],
+  )?;
+
+  get_todo_by_id(connection, &payload.id)
 }
 
 pub fn update_todo_status(

@@ -2,7 +2,10 @@ use tauri::State;
 
 use crate::{
   db::{self, DatabaseState},
-  models::{Category, CreateCategoryPayload, CreateTodoPayload, Todo, UpdateTodoStatusPayload},
+  models::{
+    Category, CreateCategoryPayload, CreateTodoPayload, Todo, UpdateTodoPayload,
+    UpdateTodoStatusPayload,
+  },
 };
 
 #[tauri::command]
@@ -22,6 +25,19 @@ pub fn create_todo(
 
   let connection = state.connection.lock().map_err(|error| error.to_string())?;
   db::create_todo(&connection, payload).map_err(|error| error.to_string())
+}
+
+#[tauri::command]
+pub fn update_todo(
+  payload: UpdateTodoPayload,
+  state: State<'_, DatabaseState>,
+) -> Result<Todo, String> {
+  if payload.title.trim().is_empty() {
+    return Err("Title is required.".to_string());
+  }
+
+  let connection = state.connection.lock().map_err(|error| error.to_string())?;
+  db::update_todo(&connection, payload).map_err(|error| error.to_string())
 }
 
 #[tauri::command]

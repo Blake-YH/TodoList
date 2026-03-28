@@ -6,21 +6,33 @@ import {
   fetchCategories,
   fetchTodos,
   removeTodo,
+  updateTodo,
   updateTodoStatus,
 } from '@/services/todos';
 import type { Category } from '@/types/category';
-import type { CreateTodoInput, Todo, TodoFilter, TodoStatus } from '@/types/todo';
+import type {
+  CreateTodoInput,
+  Todo,
+  TodoFilter,
+  TodoPriority,
+  TodoQuery,
+  TodoStatus,
+  UpdateTodoInput,
+} from '@/types/todo';
 
 type TodoStore = {
   todos: Todo[];
   categories: Category[];
-  activeFilter: TodoFilter;
+  query: TodoQuery;
   isBootstrapping: boolean;
   isSubmitting: boolean;
   error: string | null;
   initialize: () => Promise<void>;
   setActiveFilter: (filter: TodoFilter) => void;
+  setCategoryFilter: (categoryId: string) => void;
+  setPriorityFilter: (priority: '' | TodoPriority) => void;
   addTodo: (input: CreateTodoInput) => Promise<void>;
+  saveTodo: (input: UpdateTodoInput) => Promise<void>;
   toggleTodoStatus: (id: string, status: TodoStatus) => Promise<void>;
   deleteTodo: (id: string) => Promise<void>;
   addCategory: (name: string, color: string) => Promise<void>;
@@ -29,7 +41,11 @@ type TodoStore = {
 export const useTodoStore = create<TodoStore>((set) => ({
   todos: [],
   categories: [],
-  activeFilter: 'today',
+  query: {
+    filter: 'today',
+    categoryId: '',
+    priority: '',
+  },
   isBootstrapping: true,
   isSubmitting: false,
   error: null,
@@ -47,7 +63,28 @@ export const useTodoStore = create<TodoStore>((set) => ({
     }
   },
   setActiveFilter(filter) {
-    set({ activeFilter: filter });
+    set((state) => ({
+      query: {
+        ...state.query,
+        filter,
+      },
+    }));
+  },
+  setCategoryFilter(categoryId) {
+    set((state) => ({
+      query: {
+        ...state.query,
+        categoryId,
+      },
+    }));
+  },
+  setPriorityFilter(priority) {
+    set((state) => ({
+      query: {
+        ...state.query,
+        priority,
+      },
+    }));
   },
   async addTodo(input) {
     set({ isSubmitting: true, error: null });
@@ -61,6 +98,22 @@ export const useTodoStore = create<TodoStore>((set) => ({
     } catch (error) {
       set({
         error: error instanceof Error ? error.message : 'Failed to create todo.',
+        isSubmitting: false,
+      });
+    }
+  },
+  async saveTodo(input) {
+    set({ isSubmitting: true, error: null });
+
+    try {
+      const todo = await updateTodo(input);
+      set((state) => ({
+        todos: state.todos.map((item) => (item.id === todo.id ? todo : item)),
+        isSubmitting: false,
+      }));
+    } catch (error) {
+      set({
+        error: error instanceof Error ? error.message : 'Failed to update todo.',
         isSubmitting: false,
       });
     }
@@ -103,15 +156,16 @@ export const useTodoStore = create<TodoStore>((set) => ({
   },
 }));
 
-export function selectVisibleTodos(todos: Todo[], activeFilter: TodoFilter) {
+export function selectVisibleTodos(todos: Todo[], query: TodoQuery) {
   const today = new Date().toISOString().slice(0, 10);
+  let result = todos;
 
-  if (activeFilter === 'completed') {
-    return todos.filter((todo) => todo.status === 'completed');
+  if (query.filter === 'completed') {
+    result = result.filter((todo) => todo.status === 'completed');
   }
 
-  if (activeFilter === 'today') {
-    return todos.filter((todo) => {
+  if (query.filter === 'today') {
+    result = result.filter((todo) => {
       if (todo.status === 'completed') {
         return false;
       }
@@ -120,7 +174,15 @@ export function selectVisibleTodos(todos: Todo[], activeFilter: TodoFilter) {
     });
   }
 
-  return todos;
+  if (query.categoryId) {
+    result = result.filter((todo) => todo.categoryId === query.categoryId);
+  }
+
+  if (query.priority) {
+    result = result.filter((todo) => todo.priority === query.priority);
+  }
+
+  return result;
 }
 
 export function selectMetrics(todos: Todo[]) {

@@ -399,3 +399,19 @@ MVP 完成时，应达到以下状态：
 - 工程结构清晰，方便继续迭代
 
 这意味着项目已经从“想法验证”进入“可持续开发”阶段。
+## 8. Latest Update
+
+Date: 2026-03-28
+
+Completed in this round:
+
+- Added Todo edit capability
+- Added category filter
+- Added priority filter
+- Extended Tauri commands and SQLite flow for todo updates
+
+Open items for the next round:
+
+- Add overdue and date-focused views
+- Improve category management
+- Prepare packaging and release validation

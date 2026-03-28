@@ -209,12 +209,20 @@ button {
   gap: 12px;
 }
 
+.filters-row {
+  margin-bottom: 16px;
+}
+
 .field-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .inline-row {
   grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.action-row {
+  align-items: center;
 }
 
 .text-input,

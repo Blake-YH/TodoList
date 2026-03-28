@@ -95,3 +95,28 @@
 - 本次变更摘要
 
 这样可以让文档层面也保留一份更容易阅读的项目演进记录。
+### 2026-03-28 Additional Entries
+
+#### `7837993`
+
+Commit message:
+
+`feat: add local sqlite todo data flow`
+
+Summary:
+
+- Added SQLite-backed local persistence
+- Added Tauri command based todo and category data flow
+- Added frontend store and service integration
+
+#### `pending`
+
+Planned commit message:
+
+`feat: add todo editing and list filters`
+
+Summary:
+
+- Add todo editing support
+- Add category and priority filters
+- Update README and MVP progress notes

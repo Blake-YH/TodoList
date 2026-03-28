@@ -36,6 +36,17 @@ pub struct CreateTodoPayload {
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
+pub struct UpdateTodoPayload {
+  pub id: String,
+  pub title: String,
+  pub description: Option<String>,
+  pub priority: String,
+  pub category_id: Option<String>,
+  pub due_date: Option<String>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct UpdateTodoStatusPayload {
   pub id: String,
   pub status: String,
