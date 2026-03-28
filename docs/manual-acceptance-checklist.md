@@ -1,5 +1,19 @@
 # Manual Acceptance Checklist
 
+## 中文说明
+
+这份文档用于安装包生成之后的人工验收。
+
+因为自动构建只能证明“能打包成功”，不能完全证明“安装后体验正确”，所以这里列出的检查项用于人工确认：
+
+- 安装是否正常
+- 首次启动是否正常
+- Todo 核心流程是否正常
+- 分类、筛选和持久化是否正常
+- 界面与视觉状态是否符合预期
+
+这份文档适合在每次准备发布候选版本时执行一遍。
+
 ## Scope
 
 This checklist is used after the Windows installer is built and installed locally.

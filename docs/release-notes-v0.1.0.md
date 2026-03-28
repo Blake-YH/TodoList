@@ -1,5 +1,19 @@
 # Release Notes v0.1.0
 
+## 中文说明
+
+这份文档是 `v0.1.0` 版本的发布说明草稿。
+
+它主要用于汇总：
+
+- 这个版本交付了哪些核心能力
+- 当前技术栈是什么
+- 打包产物是什么
+- 还存在哪些已知限制
+- 下一步建议怎么推进
+
+这份文档后续可以直接整理成 GitHub Release 文案或对外发布说明。
+
 ## Summary
 
 `v0.1.0` is the first MVP milestone for TodoList on Windows.
