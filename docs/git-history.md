@@ -25,6 +25,30 @@
 - 初始化基础目录结构
 - 配置 `.gitignore`
 
+#### `e3cdf69`
+
+提交信息：
+
+`docs: add readiness checklist and git history`
+
+包含内容：
+
+- 新增开发前准备检查文档
+- 新增 Git 提交记录文档
+- 明确当前环境检查范围与仓库演进记录方式
+
+#### `待提交`
+
+计划提交信息：
+
+`docs: update readiness guide and add local dev scripts`
+
+包含内容：
+
+- 修正文档结论，确认本地环境已可用于开发
+- 补充本地 VS 开发环境启动脚本
+- 补充本地环境快速检查脚本
+
 ## 说明
 
 后续每次发生实际变更时，都应同步更新本文件，记录以下信息：
