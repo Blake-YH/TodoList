@@ -95,17 +95,22 @@ TodoList/
 - README 编写
 - MVP 任务拆解文档
 - 基础目录结构初始化
+- Tauri + Vite + React + TypeScript 脚手架初始化
+- SQLite 本地数据库接入
+- Tauri command 基础数据读写能力
+- 前端 Todo store、service 和基础 CRUD 页面骨架
 
 尚未完成：
 
-- 实际工程脚手架安装
-- Tauri 与前端项目初始化
-- 数据库与业务代码实现
+- Todo 编辑能力
+- 更完整的筛选和分类管理
+- 数据导入导出、通知、托盘、自启动
+- Windows 安装包验证
 
 ## 下一步
 
 下一阶段建议直接开始：
 
-1. 初始化 `Tauri + Vite + React + TypeScript`
-2. 搭建 SQLite 数据访问层
-3. 实现 MVP 首批页面与 Todo CRUD
+1. 实现 Todo 编辑与更完整的筛选
+2. 完善分类管理和错误处理
+3. 开始准备 MVP 打包链路

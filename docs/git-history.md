@@ -37,17 +37,53 @@
 - 新增 Git 提交记录文档
 - 明确当前环境检查范围与仓库演进记录方式
 
-#### `待提交`
+#### `87fe38e`
 
-计划提交信息：
+提交信息：
 
 `docs: update readiness guide and add local dev scripts`
 
 包含内容：
 
-- 修正文档结论，确认本地环境已可用于开发
-- 补充本地 VS 开发环境启动脚本
-- 补充本地环境快速检查脚本
+- 修正文档结论，确认本地环境可用于 Tauri 开发
+- 新增本地 VS 开发环境启动脚本
+- 新增本地环境快速检查脚本
+
+#### `dedb220`
+
+提交信息：
+
+`docs: add local development environment notes to plan`
+
+包含内容：
+
+- 在 `plan.md` 中同步本机开发环境约束
+- 明确 VS 开发者环境和 `npm.cmd` 使用要求
+
+#### `b04bbc1`
+
+提交信息：
+
+`feat: scaffold tauri react desktop app`
+
+包含内容：
+
+- 初始化 `Tauri + Vite + React + TypeScript` 工程
+- 建立前端入口、基础 UI 和 Tauri 配置
+- 完成工程级构建、Lint 和 Rust 编译验证
+
+#### `待提交`
+
+计划提交信息：
+
+`feat: add local sqlite todo data flow`
+
+包含内容：
+
+- 接入 SQLite 本地数据库
+- 实现 Tauri command 基础 CRUD
+- 实现前端 Todo store、service 和基础交互
+- 更新 README 与 MVP 文档中的阶段进度
 
 ## 说明
 
