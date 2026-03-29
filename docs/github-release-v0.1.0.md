@@ -27,6 +27,7 @@ This is the first MVP release of TodoList for Windows.
 - Category create / filter / count / delete
 - Today / All / Upcoming / Overdue / Completed views
 - English / Simplified Chinese language switching
+- Dark / Light theme switching
 - Windows MSI and NSIS installers
 
 ### 本版本已包含
@@ -46,8 +47,8 @@ This is the first MVP release of TodoList for Windows.
 
 ### SHA256
 
-- MSI: `6af4ba8db2c315393a702f82caebfbe4f331c2a6f32317cacd315bb1bac02fbe`
-- NSIS: `80c3f9cd84bf7ea8abfa5b339f25e56622147aff789a1e73eda8d5caa19735e8`
+- MSI: `c84a6297c13e6362935f3e262b4a49b5e1aea7e76a9e843b2ebdb4b02ee091fc`
+- NSIS: `2c85ebe7d0b454387dc4939772a5972d5dafe9668957212260483b17ee45a8c2`
 
 ### Known Limitations
 
@@ -66,7 +67,7 @@ This is the first MVP release of TodoList for Windows.
 
 ## Release Asset Correction
 
-- Replace any previously uploaded `v0.1.0` assets with the rebuilt installers generated after commit `c72071c`
+- Replace any previously uploaded `v0.1.0` assets with the rebuilt installers generated after commit `ed69f9b`
 - Correct MSI: `D:\VibeCoding_project\TodoList\src-tauri\target\release\bundle\msi\TodoList_0.1.0_x64_en-US.msi`
 - Correct NSIS: `D:\VibeCoding_project\TodoList\src-tauri\target\release\bundle\nsis\TodoList_0.1.0_x64-setup.exe`
-- This rebuild includes the English / Simplified Chinese language switching feature
+- This rebuild includes language switching, theme switching, and refreshed desktop UI styling

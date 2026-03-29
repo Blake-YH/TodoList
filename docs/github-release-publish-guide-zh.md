@@ -3,7 +3,7 @@
 ## 中文说明
 
 这份文档用于指导 `v0.1.0` 的 GitHub Release 发布与修正。
-当前需要特别注意的是：GitHub 上已经上传过一次旧安装包，而那一版不包含“中英文切换”功能，因此必须先替换旧附件，再更新 Release 正文中的 SHA256。
+当前需要特别注意的是：如果 GitHub 上已经上传过旧安装包，那么那一版不包含本次新增的“深浅色主题切换”和新的界面修正，因此必须先替换旧附件，再更新 Release 正文中的 SHA256。
 
 ## 1. Release 标题
 
@@ -31,6 +31,7 @@ This is the first MVP release of TodoList for Windows.
 - Category create / filter / count / delete
 - Today / All / Upcoming / Overdue / Completed views
 - English / Simplified Chinese language switching
+- Dark / Light theme switching
 - Windows MSI and NSIS installers
 
 ### 本版本已包含
@@ -41,6 +42,7 @@ This is the first MVP release of TodoList for Windows.
 - 分类的创建、筛选、计数、删除
 - 今天、全部、即将到期、已逾期、已完成视图
 - 英文 / 简体中文切换
+- 深色 / 浅色主题切换
 - Windows MSI 和 NSIS 安装包
 
 ### Installer Files
@@ -50,8 +52,8 @@ This is the first MVP release of TodoList for Windows.
 
 ### SHA256
 
-- MSI: `6af4ba8db2c315393a702f82caebfbe4f331c2a6f32317cacd315bb1bac02fbe`
-- NSIS: `80c3f9cd84bf7ea8abfa5b339f25e56622147aff789a1e73eda8d5caa19735e8`
+- MSI: `c84a6297c13e6362935f3e262b4a49b5e1aea7e76a9e843b2ebdb4b02ee091fc`
+- NSIS: `2c85ebe7d0b454387dc4939772a5972d5dafe9668957212260483b17ee45a8c2`
 
 ### Known Limitations
 
@@ -81,9 +83,9 @@ This is the first MVP release of TodoList for Windows.
 
 原因：
 
-- 旧附件打包时间早于语言切换功能合入
-- 旧附件安装后看不到 Language 相关切换入口
-- 当前正确附件已经包含中英文切换能力
+- 旧附件打包时间早于主题切换与界面修正功能合入
+- 旧附件安装后无法验证本次新增的深浅色主题切换与下拉菜单样式修正
+- 当前正确附件已经包含中英文切换、深浅色主题切换与新的界面样式
 
 ## 5. 在 GitHub 页面手工修正 Release
 
@@ -98,22 +100,7 @@ This is the first MVP release of TodoList for Windows.
 5. 将 Release 正文中的 SHA256 更新为本文档第 2 节给出的新值
 6. 点击 `Update release`
 
-## 6. 如果要重新创建 Release
-
-也可以删除原有附件后直接编辑，不一定要新建 Release。
-如果你想重新走一次发布流程，可按下面步骤执行：
-
-1. 打开仓库：`https://github.com/Blake-YH/TodoList`
-2. 点击 `Releases`
-3. 选择已有的 `v0.1.0`，或者点击创建新 Release
-4. `Choose a tag` 选择 `v0.1.0`
-5. `Release title` 填写 `v0.1.0`
-6. 粘贴本文档第 2 节的正文
-7. 上传两个正确的安装包
-8. 确认不是 `Set as a pre-release`
-9. 点击 `Publish release` 或 `Update release`
-
-## 7. 最后确认
+## 6. 最后确认
 
 在最终发布前，确认以下事项：
 
@@ -121,4 +108,4 @@ This is the first MVP release of TodoList for Windows.
 - `v0.1.0` tag 已存在并已推送
 - Release 附件已替换为新安装包
 - Release 正文中的 SHA256 已更新为新值
-- 重新下载并安装后，可以看到中英文切换功能
+- 重新下载并安装后，可以看到中英文切换、深浅色主题切换以及修正后的下拉菜单样式

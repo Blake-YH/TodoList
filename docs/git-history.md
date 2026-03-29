@@ -207,3 +207,4 @@ Summary:
 - Add GitHub Release body draft
 - Record SHA256 for Windows installers
 - Correct v0.1.0 release hashes after rebuilding installers with language switching support
+- Add persisted dark/light theme switching and rebuild v0.1.0 installers with refreshed UI

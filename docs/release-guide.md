@@ -89,11 +89,11 @@ Verified successful outputs / 已验证成功的产物：
 - `src-tauri\target\release\bundle\nsis\TodoList_0.1.0_x64-setup.exe`
 
 SHA256 / 鍝堝笇鍊硷細
-- MSI: `6af4ba8db2c315393a702f82caebfbe4f331c2a6f32317cacd315bb1bac02fbe`
-- NSIS: `80c3f9cd84bf7ea8abfa5b339f25e56622147aff789a1e73eda8d5caa19735e8`
+- MSI: `c84a6297c13e6362935f3e262b4a49b5e1aea7e76a9e843b2ebdb4b02ee091fc`
+- NSIS: `2c85ebe7d0b454387dc4939772a5972d5dafe9668957212260483b17ee45a8c2`
 
 Release note / 鍙戝竷璇存槑锛?
-- If an older `v0.1.0` installer was uploaded before the language switching rebuild, it must be replaced before release
+- If an older `v0.1.0` installer was uploaded before the theme-switching rebuild, it must be replaced before release
 
 Build result / 构建结果：
 

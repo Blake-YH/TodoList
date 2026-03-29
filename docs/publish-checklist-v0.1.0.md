@@ -23,8 +23,8 @@
 
 ## SHA256
 
-- MSI: `6af4ba8db2c315393a702f82caebfbe4f331c2a6f32317cacd315bb1bac02fbe`
-- NSIS: `80c3f9cd84bf7ea8abfa5b339f25e56622147aff789a1e73eda8d5caa19735e8`
+- MSI: `c84a6297c13e6362935f3e262b4a49b5e1aea7e76a9e843b2ebdb4b02ee091fc`
+- NSIS: `2c85ebe7d0b454387dc4939772a5972d5dafe9668957212260483b17ee45a8c2`
 
 ## Pre-Release Checks
 
@@ -34,6 +34,7 @@
 - Confirm `cargo check --manifest-path src-tauri\Cargo.toml` passes
 - Confirm `cargo tauri build` passes
 - Confirm bilingual UI switching works
+- Confirm dark / light theme switching works
 - Confirm local SQLite data is created correctly
 - Confirm Todo create / edit / complete / reopen / delete all work
 - Confirm category create / filter / delete all work
@@ -51,6 +52,7 @@ Minimum release requirement:
 - First launch succeeds
 - Core todo flow succeeds
 - Language switch succeeds
+- Theme switch succeeds
 
 ## GitHub Release Assets
 
@@ -61,7 +63,7 @@ Recommended upload set:
 
 Replacement note:
 
-- If `v0.1.0` assets were uploaded before the language switching rebuild, delete the old GitHub Release assets and upload the rebuilt installers again
+- If `v0.1.0` assets were uploaded before the theme-switching rebuild, delete the old GitHub Release assets and upload the rebuilt installers again
 - Keep only the installers matching the SHA256 values in this document
 
 Recommended description source:
