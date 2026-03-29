@@ -1,52 +1,48 @@
-# Tech Stack
+﻿# Tech Stack
 
-## 中文说明
-
-本文档说明 TodoList 当前采用的技术栈、选型理由以及各层职责。
-
-## 1. Stack Summary
+## Stack Summary
 
 - Desktop shell: `Tauri 2`
 - Frontend: `React + TypeScript + Vite`
 - State management: `Zustand`
-- Form validation: `React Hook Form + Zod`
+- Form handling: `React Hook Form + Zod`
 - Local database: `SQLite`
-- Backend bridge: `Tauri commands (Rust)`
+- Native bridge: `Tauri commands in Rust`
 - Packaging: `cargo tauri build`
 
-## 2. Why This Stack
+## Why This Stack
 
 ### Tauri 2
 
-- lighter than typical Electron packaging
+- lighter packaging than a typical Electron app
 - suitable for a small Windows desktop utility
-- supports native packaging and local desktop integration
+- supports native packaging and local integration
 
 ### React + TypeScript + Vite
 
 - fast development loop
-- component-based UI structure
-- TypeScript reduces data model and interaction errors
+- component-based UI composition
+- TypeScript improves model and interaction safety
 
 ### Zustand
 
 - simple store model
-- enough for MVP-level desktop app state
-- lower ceremony than Redux
+- enough for current app complexity
+- less ceremony than Redux
 
 ### SQLite
 
-- local-first persistence
-- good fit for todo, category, and settings data
+- good fit for local-first persistence
+- suitable for todos, categories, and settings
 - easier to evolve than plain JSON files
 
 ### Rust + Tauri Commands
 
-- keeps desktop/data access logic in a typed backend layer
+- keeps desktop and database operations in a typed backend layer
 - exposes a small native command surface to the frontend
-- works well for local settings and database operations
+- works well for local settings persistence
 
-## 3. Current Architecture
+## Current Architecture
 
 ### Frontend Layer
 
@@ -55,18 +51,18 @@ Responsible for:
 - UI rendering
 - forms and interactions
 - filters and views
-- theme and language application
+- language and theme application
 
 ### Store Layer
 
 Responsible for:
 
 - local app state
-- initialization flow
+- initialization
+- query state
 - calling Tauri commands
-- keeping language/theme/query state consistent
 
-### Tauri Backend Layer
+### Backend Layer
 
 Responsible for:
 
@@ -75,20 +71,12 @@ Responsible for:
 - todo and category CRUD
 - packaged desktop runtime
 
-### Data Layer
-
-Current persistent entities:
-
-- `todos`
-- `categories`
-- `settings`
-
-## 4. Settings Currently Persisted
+## Persisted Settings
 
 - `language`
 - `theme`
 
-## 5. Build and Packaging
+## Build Commands
 
 ### Frontend Build
 
@@ -108,7 +96,7 @@ cargo check --manifest-path src-tauri\Cargo.toml
 cargo tauri build
 ```
 
-### Output Artifacts
+## Output Artifacts
 
 - `src-tauri\target\release\bundle\msi\TodoList_0.1.0_x64_en-US.msi`
 - `src-tauri\target\release\bundle\nsis\TodoList_0.1.0_x64-setup.exe`

@@ -1,31 +1,22 @@
-# Development Plan
+﻿# Development Plan
 
-## 中文说明
+## Purpose
 
-本文档用于记录 TodoList 当前的开发计划、当前所处阶段、已完成内容与下一步动作。
+This document tracks the current project stage, completed work, work in progress, and next actions.
 
-## 1. Current Stage
+## Current Stage
 
-Current stage: `MVP polish and release preparation`  
-当前阶段：`MVP 打磨与发布准备`
+Current stage: `MVP polish and release preparation`
 
-### Current Step | 当前所处步骤
+Current step:
 
-The project is currently in:
+- packaged build verification
+- release asset synchronization
+- final UI consistency review
 
-- UI polish and consistency fixes
-- release asset refresh
-- final packaged-app verification
+## Completed
 
-项目当前处于：
-
-- 界面细节打磨与一致性修正
-- 发布安装包更新
-- 最终安装版验收验证
-
-## 2. Completed
-
-- Built desktop app with Tauri 2 + React + TypeScript
+- Chose `Tauri + React + TypeScript + Vite + SQLite + Zustand`
 - Implemented local SQLite persistence
 - Implemented todo create / edit / complete / reopen / delete
 - Implemented category create / filter / count / delete
@@ -35,42 +26,42 @@ The project is currently in:
 - Refreshed desktop UI and fixed dropdown theme mismatch issues
 - Built Windows MSI and NSIS installers
 
-## 3. In Progress
+## In Progress
 
-- Final review of packaged app behavior
-- Final synchronization between GitHub Release assets and local installers
-- Release-page wording and asset confirmation
+- final packaged app review
+- release page asset replacement
+- final release wording cleanup
 
-## 4. Next Steps
+## Next Steps
 
 1. Install the latest packaged build locally.
-2. Verify theme switching, language switching, and dropdown readability in the installed app.
-3. Replace GitHub Release assets with the newest installers if needed.
-4. Perform final manual acceptance before public distribution.
+2. Verify language switching, theme switching, and dropdown readability in the installed app.
+3. Replace GitHub Release assets with the newest installers when needed.
+4. Complete final manual acceptance before public distribution.
 
-## 5. Short Milestone Roadmap
+## Milestones
 
-### Milestone A | MVP Available
+### Milestone A: MVP Available
 
-- Core todo workflow available
-- Local persistence available
-- Windows installer build available
+- core todo workflow
+- local persistence
+- Windows installer build
 
-### Milestone B | MVP Polish
+### Milestone B: MVP Polish
 
-- UI consistency improvements
-- Language switching
-- Theme switching
-- Better visual hierarchy and readability
+- language switching
+- theme switching
+- UI readability improvements
+- category workflow refinement
 
-### Milestone C | Release Closure
+### Milestone C: Release Closure
 
-- Final packaged build verification
+- packaged build verification
 - GitHub Release asset update
-- User-facing screenshots and release notes cleanup
+- public-facing README and documentation cleanup
 
-## 6. Current Risks
+## Known Risks
 
-- Packaged build and GitHub Release attachments can drift if installers are rebuilt but not re-uploaded.
-- Windows terminal encoding differences can make old Chinese text look broken in terminal output.
-- Final GUI validation still depends on manual installation and clicking through the packaged app.
+- release attachments can drift from local installers after rebuilds
+- final GUI validation still depends on manual installed-app testing
+- Windows terminal encoding can still look wrong if the shell is not configured for UTF-8

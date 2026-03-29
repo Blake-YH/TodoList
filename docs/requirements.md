@@ -1,22 +1,16 @@
-# Requirements
+﻿# Requirements
 
-## 中文说明
-
-本文档用于整理 TodoList 当前版本的产品需求，包含目标、范围、核心功能和非功能要求。
-
-## 1. Product Goal
+## Product Goal
 
 Build a lightweight Windows desktop todo application for personal daily task management.
 
-目标是做一个面向个人用户的轻量级 Windows 桌面待办应用。
-
-## 2. Target Users
+## Target Users
 
 - personal users
 - users who prefer local-first desktop tools
 - users who want a simpler alternative to heavy productivity platforms
 
-## 3. MVP Scope
+## MVP Scope
 
 ### Core Todo Capability
 
@@ -59,16 +53,16 @@ Build a lightweight Windows desktop todo application for personal daily task man
 - local SQLite storage
 - app restart should retain todos, categories, and settings
 
-## 4. UI / UX Requirements
+## UI / UX Requirements
 
 - desktop-first layout
 - clean visual hierarchy
 - readable cards, buttons, and labels
 - dropdown menus must match the active theme
 - dark theme and light theme must both remain readable
-- avoid noisy, placeholder-like explanatory cards in the main workspace
+- avoid noisy explanatory cards in the main workspace
 
-## 5. Non-Functional Requirements
+## Non-Functional Requirements
 
 - lightweight runtime experience
 - stable local data persistence
@@ -76,7 +70,7 @@ Build a lightweight Windows desktop todo application for personal daily task man
 - maintainable code structure
 - support future release iteration without major rewrites
 
-## 6. Out of Scope for Current Version
+## Out of Scope
 
 - cloud sync
 - account system
@@ -85,9 +79,9 @@ Build a lightweight Windows desktop todo application for personal daily task man
 - tray integration
 - import/export flow
 
-## 7. Current Release Expectation
+## Current Release Expectation
 
-The current release candidate should satisfy:
+The current release candidate should provide:
 
 - stable local todo workflow
 - category management
