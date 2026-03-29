@@ -3,102 +3,33 @@
 Local-first lightweight desktop todo app for Windows.  
 面向 Windows 的本地优先、轻量化桌面待办应用。
 
----
-
 ## Overview | 项目简介
 
 **English**
 
-TodoList is a desktop todo application built for simple, fast, and practical daily task management.
+TodoList is a desktop todo application focused on simple, fast, and practical daily task management.
 
-It is designed to:
+Current product direction:
 
-- stay lightweight
-- work offline
-- persist data locally with SQLite
-- avoid turning into a heavy collaboration platform
+- lightweight desktop experience
+- offline-first local usage
+- SQLite local persistence
+- bilingual interface
+- dark / light theme switching
 
 **中文**
 
-TodoList 是一个专注于日常任务管理的桌面待办应用，目标是做到简单、快速、实用。
+TodoList 是一个专注于简单、快速、实用的桌面待办应用。
 
-它的设计方向是：
+当前产品方向：
 
-- 保持轻量
-- 支持离线使用
-- 基于 SQLite 做本地持久化
-- 不演化成复杂的协作平台
+- 轻量化桌面体验
+- 离线优先、本地使用
+- 基于 SQLite 的本地持久化
+- 中英文双语界面
+- 深色 / 浅色主题切换
 
----
-
-## Screenshot Placeholder | 项目截图占位
-
-Current repository status: screenshot asset not added yet.  
-当前仓库状态：项目截图尚未加入。
-
-Recommended future screenshots:
-
-- main todo dashboard
-- category management panel
-- language switch state
-- theme switch state
-- packaged Windows installer result
-
-建议后续补充的截图：
-
-- 主待办面板
-- 分类管理区域
-- 中英文切换效果
-- Windows 安装包与安装完成界面
-
-Brand asset preview:
-
-![TodoList Brand Mark](public/brand-mark.svg)
-
----
-
-## Quick Start | 快速开始
-
-### Run In Development | 本地开发启动
-
-```bash
-npm.cmd install
-npm.cmd run lint
-npm.cmd run build
-```
-
-For Rust / Tauri commands on Windows, use the Visual Studio developer environment first:
-
-```cmd
-scripts\vs-dev-shell.cmd
-```
-
-Windows 下执行 Rust / Tauri 相关命令前，建议先进入 Visual Studio 开发环境：
-
-```cmd
-scripts\vs-dev-shell.cmd
-```
-
-### Validate Desktop Build | 验证桌面构建
-
-```bash
-cargo check --manifest-path src-tauri\Cargo.toml
-```
-
-### Build Windows Installers | 构建 Windows 安装包
-
-```bash
-cargo tauri build
-```
-
-Current package outputs:
-
-- `src-tauri\target\release\bundle\msi\TodoList_0.1.0_x64_en-US.msi`
-- `src-tauri\target\release\bundle\nsis\TodoList_0.1.0_x64-setup.exe`
-
----
-
-## Features | 当前功能
+## Current Features | 当前功能
 
 - Todo create / edit / complete / reopen / delete
 - Category create / filter / count / delete
@@ -108,70 +39,29 @@ Current package outputs:
 - Local SQLite persistence
 - Windows installer packaging
 
-## Latest UI Update | 最新界面更新
-**English**
+## Quick Start | 快速开始
 
-- Added dark / light theme switching
-- Theme preference is persisted locally
-- Dropdown controls are being aligned with the active theme for better readability
-- The old top MVP message card is being removed in favor of a cleaner workspace header
+```bash
+npm.cmd install
+npm.cmd run build
+```
 
-**中文**
+For Rust / Tauri commands on Windows:
 
-- 新增深色 / 浅色主题切换
-- 主题选择会本地持久化保存
-- 下拉菜单会跟随当前主题统一背景色与文字可读性
-- 顶部旧版 MVP 说明卡片将移除，并改为更简洁的工作区头部
+```cmd
+scripts\vs-dev-shell.cmd
+cargo check --manifest-path src-tauri\Cargo.toml
+cargo tauri build
+```
 
-- Todo 的新增 / 编辑 / 完成 / 重新打开 / 删除
-- 分类的创建 / 筛选 / 计数 / 删除
-- 今天 / 全部 / 即将到期 / 已逾期 / 已完成视图
-- 英文 / 简体中文切换
-- SQLite 本地持久化
-- Windows 安装包构建
+## Core Documents | 核心文档
 
----
-
-## Tech Stack | 技术栈
-
-- Tauri 2
-- React
-- TypeScript
-- Vite
-- SQLite
-- Zustand
-- React Hook Form
-- Zod
-
----
-
-## Project Documents | 项目文档
-
-- [Project Plan](plan.md)
-- [MVP Breakdown](docs/mvp-task-breakdown.md)
-- [Release Guide](docs/release-guide.md)
-- [Manual Acceptance Checklist](docs/manual-acceptance-checklist.md)
-- [Release Notes v0.1.0](docs/release-notes-v0.1.0.md)
-- [GitHub Release Publish Guide](docs/github-release-publish-guide-zh.md)
-- [Branding Guide](docs/branding-guide.md)
-- [Archived Previous README](docs/README-legacy.md)
-
----
+- [Development Plan](docs/development-plan.md)
+- [Tech Stack](docs/tech-stack.md)
+- [Requirements](docs/requirements.md)
+- [User Guide](docs/user-guide.md)
 
 ## Status | 当前状态
 
-**English**
-
-The project has reached MVP release-ready status:
-
-- core local workflow is implemented
-- Windows installers are built successfully
-- release materials are prepared
-
-**中文**
-
-当前项目已进入 MVP 可发布状态：
-
-- 核心本地待办流程已经完成
-- Windows 安装包已经构建成功
-- 发布所需文档和材料已经整理完成
+The project is in MVP polish and release-preparation stage.  
+项目当前处于 MVP 打磨与发布准备阶段。
