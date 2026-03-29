@@ -232,6 +232,7 @@ export function TodoShell() {
               title={filterLabel[filter]}
               type="button"
             >
+              <span className="nav-badge">{getFilterShortLabel(filter, language)}</span>
               <span className="nav-text">{filterLabel[filter]}</span>
             </button>
           ))}
@@ -558,4 +559,28 @@ function getDueTone(dueDate: string | null, status: TodoStatus) {
   }
 
   return 'due-upcoming';
+}
+
+function getFilterShortLabel(filter: TodoFilter, language: AppLanguage) {
+  if (language === 'zh-CN') {
+    const shortMap: Record<TodoFilter, string> = {
+      today: '今',
+      all: '全',
+      upcoming: '将',
+      overdue: '逾',
+      completed: '完',
+    };
+
+    return shortMap[filter];
+  }
+
+  const shortMap: Record<TodoFilter, string> = {
+    today: 'T',
+    all: 'A',
+    upcoming: 'U',
+    overdue: 'O',
+    completed: 'C',
+  };
+
+  return shortMap[filter];
 }
