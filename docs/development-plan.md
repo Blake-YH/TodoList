@@ -10,6 +10,8 @@ Current stage: `MVP polish and release preparation`
 
 Current step:
 
+- sidebar collapse and expand interaction
+- split main workspace into `Tasks` and `Create` pages
 - packaged build verification
 - release asset synchronization
 - final UI consistency review
@@ -28,6 +30,9 @@ Current step:
 
 ## In Progress
 
+- sidebar collapse animation and persistence
+- top workspace navigation for `Tasks` and `Create`
+- auto-jump from edit action to `Create` page
 - final packaged app review
 - release page asset replacement
 - final release wording cleanup
@@ -35,9 +40,11 @@ Current step:
 ## Next Steps
 
 1. Install the latest packaged build locally.
-2. Verify language switching, theme switching, and dropdown readability in the installed app.
-3. Replace GitHub Release assets with the newest installers when needed.
-4. Complete final manual acceptance before public distribution.
+2. Verify sidebar collapse and expand behavior in the installed app.
+3. Verify `Tasks` / `Create` top navigation and edit-to-create flow.
+4. Verify language switching, theme switching, and dropdown readability in the installed app.
+5. Replace GitHub Release assets with the newest installers when needed.
+6. Complete final manual acceptance before public distribution.
 
 ## Milestones
 
@@ -53,6 +60,8 @@ Current step:
 - theme switching
 - UI readability improvements
 - category workflow refinement
+- collapsible desktop sidebar
+- split `Tasks` and `Create` workspace pages
 
 ### Milestone C: Release Closure
 

@@ -12,6 +12,7 @@ Contains:
 
 - language switch
 - theme switch
+- sidebar collapse button
 - main task views
 - category management
 
@@ -20,9 +21,26 @@ Contains:
 Contains:
 
 - overview header
-- todo creation and editing form
-- todo list
+- top page tabs
+- todo creation and editing page
+- todo list page
 - category and priority filters
+
+## Collapse or Expand the Sidebar
+
+- Click the toggle button at the top of the sidebar.
+- In collapsed mode, the sidebar keeps compact controls and hides most long text.
+- The app remembers the last sidebar state locally.
+
+## Switch Top Pages
+
+Use the top tabs in the workspace:
+
+- `Tasks`
+- `Create`
+
+`Tasks` is for viewing and filtering todos.  
+`Create` is for creating or editing a todo.
 
 ## Change Language
 
@@ -54,9 +72,10 @@ The selected theme is saved locally and remains after restart.
 ## Edit a Todo
 
 1. Click `Edit` on a todo card.
-2. Update the form fields.
-3. Click `Save changes`.
-4. Click `Cancel` to discard the edit.
+2. The app switches to the `Create` page automatically.
+3. Update the form fields.
+4. Click `Save changes`.
+5. Click `Cancel` to discard the edit.
 
 ## Complete or Reopen a Todo
 

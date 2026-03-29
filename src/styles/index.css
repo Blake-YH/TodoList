@@ -116,6 +116,11 @@ select,
   min-height: 100vh;
   padding: 24px;
   gap: 22px;
+  transition: grid-template-columns 180ms ease;
+}
+
+.app-shell.sidebar-collapsed {
+  grid-template-columns: 108px minmax(0, 1fr);
 }
 
 .sidebar,
@@ -129,13 +134,29 @@ select,
 
 .sidebar {
   border-radius: 28px;
-  padding: 24px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
   position: sticky;
   top: 24px;
-  height: fit-content;
+  height: calc(100vh - 48px);
+  overflow: hidden;
+}
+
+.sidebar-topbar {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.sidebar-toggle {
+  border: 1px solid var(--panel-border);
+  background: var(--panel-alt);
+  color: var(--text);
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  cursor: pointer;
 }
 
 .brand-block h1,
@@ -208,12 +229,15 @@ select,
 .secondary-button:hover,
 .text-input:hover,
 .text-area:hover,
-.select-input:hover {
+.select-input:hover,
+.sidebar-toggle:hover,
+.top-tab:hover {
   background: var(--input-hover);
 }
 
 .category-chip.is-selected,
-.nav-item.is-active {
+.nav-item.is-active,
+.top-tab.is-active {
   border-color: rgba(243, 165, 34, 0.42);
   background: linear-gradient(135deg, rgba(243, 165, 34, 0.16), rgba(243, 165, 34, 0.06));
 }
@@ -264,6 +288,36 @@ select,
   text-align: center;
 }
 
+.nav-text,
+.brand-copy,
+.brand-block .eyebrow,
+.sidebar-panel .eyebrow,
+.category-card .ghost-button,
+.category-chip span:not(.category-dot),
+.sidebar-create-row .secondary-button {
+  opacity: 1;
+  transition: opacity 140ms ease;
+}
+
+.app-shell.sidebar-collapsed .brand-copy,
+.app-shell.sidebar-collapsed .brand-block .eyebrow,
+.app-shell.sidebar-collapsed .sidebar-panel .eyebrow,
+.app-shell.sidebar-collapsed .nav-text,
+.app-shell.sidebar-collapsed .category-card .ghost-button,
+.app-shell.sidebar-collapsed .category-chip span:not(.category-dot),
+.app-shell.sidebar-collapsed .sidebar-create-row .secondary-button {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.app-shell.sidebar-collapsed .brand-block h1 {
+  font-size: 20px;
+}
+
+.app-shell.sidebar-collapsed .language-row {
+  grid-template-columns: 1fr;
+}
+
 .workspace {
   display: grid;
   gap: 20px;
@@ -276,6 +330,30 @@ select,
   justify-content: space-between;
   gap: 20px;
   padding: 8px 4px 4px;
+}
+
+.header-meta {
+  display: grid;
+  gap: 12px;
+  justify-items: end;
+}
+
+.top-tabs {
+  display: inline-flex;
+  gap: 10px;
+  padding: 6px;
+  border-radius: 18px;
+  border: 1px solid var(--panel-border);
+  background: var(--panel-alt);
+}
+
+.top-tab {
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text);
+  border-radius: 12px;
+  padding: 10px 16px;
+  cursor: pointer;
 }
 
 .header-pills {
@@ -320,10 +398,18 @@ select,
   color: var(--danger);
 }
 
-.panel-grid {
+.tasks-layout,
+.create-layout {
   display: grid;
-  grid-template-columns: 380px minmax(0, 1fr);
   gap: 20px;
+}
+
+.tasks-layout {
+  grid-template-columns: 380px minmax(0, 1fr);
+}
+
+.create-layout {
+  grid-template-columns: minmax(0, 760px);
 }
 
 .metrics-panel {
@@ -364,6 +450,10 @@ select,
   min-width: 0;
 }
 
+.create-panel {
+  min-height: 100%;
+}
+
 .todo-form,
 .field {
   display: grid;
@@ -398,6 +488,10 @@ select,
   grid-template-columns: minmax(0, 1fr) auto;
 }
 
+.sidebar-create-row {
+  align-items: center;
+}
+
 .action-row {
   align-items: center;
 }
@@ -423,7 +517,9 @@ select,
 .secondary-button:focus-visible,
 .ghost-button:focus-visible,
 .category-chip:focus-visible,
-.color-swatch:focus-visible {
+.color-swatch:focus-visible,
+.sidebar-toggle:focus-visible,
+.top-tab:focus-visible {
   border-color: rgba(243, 165, 34, 0.48);
   box-shadow: 0 0 0 4px var(--focus-ring);
 }
@@ -605,14 +701,19 @@ select,
   color: #b6d3ff;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1180px) {
   .app-shell,
-  .panel-grid {
+  .tasks-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .app-shell.sidebar-collapsed {
     grid-template-columns: 1fr;
   }
 
   .sidebar {
     position: static;
+    height: auto;
   }
 }
 
@@ -627,8 +728,14 @@ select,
     align-items: start;
   }
 
+  .header-meta,
   .header-pills {
+    justify-items: start;
     justify-content: flex-start;
+  }
+
+  .top-tabs {
+    flex-wrap: wrap;
   }
 }
 

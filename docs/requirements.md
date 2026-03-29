@@ -47,6 +47,7 @@ Build a lightweight Windows desktop todo application for personal daily task man
 - dark / light theme switching
 - persist language locally
 - persist theme locally
+- persist sidebar expanded / collapsed state locally
 
 ### Persistence
 
@@ -61,6 +62,10 @@ Build a lightweight Windows desktop todo application for personal daily task man
 - dropdown menus must match the active theme
 - dark theme and light theme must both remain readable
 - avoid noisy explanatory cards in the main workspace
+- sidebar must support collapse / expand with a light animation
+- main workspace must provide top navigation for `Tasks` and `Create`
+- editing an existing todo should switch the user to the `Create` page automatically
+- category management should remain in the sidebar for the current version
 
 ## Non-Functional Requirements
 
@@ -87,4 +92,6 @@ The current release candidate should provide:
 - category management
 - language switching
 - theme switching
+- collapsible sidebar
+- `Tasks` / `Create` split workspace
 - packaged installer availability
