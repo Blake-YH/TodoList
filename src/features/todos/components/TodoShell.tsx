@@ -18,12 +18,14 @@ export function TodoShell() {
   const todos = useTodoStore((state) => state.todos);
   const categories = useTodoStore((state) => state.categories);
   const language = useTodoStore((state) => state.language);
+  const theme = useTodoStore((state) => state.theme);
   const query = useTodoStore((state) => state.query);
   const isBootstrapping = useTodoStore((state) => state.isBootstrapping);
   const isSubmitting = useTodoStore((state) => state.isSubmitting);
   const error = useTodoStore((state) => state.error);
   const initialize = useTodoStore((state) => state.initialize);
   const setLanguage = useTodoStore((state) => state.setLanguage);
+  const setTheme = useTodoStore((state) => state.setTheme);
   const setActiveFilter = useTodoStore((state) => state.setActiveFilter);
   const setCategoryFilter = useTodoStore((state) => state.setCategoryFilter);
   const setPriorityFilter = useTodoStore((state) => state.setPriorityFilter);
@@ -66,6 +68,10 @@ export function TodoShell() {
   useEffect(() => {
     void initialize();
   }, [initialize]);
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+  }, [theme]);
 
   const visibleTodos = selectVisibleTodos(todos, query);
   const metrics = selectMetrics(todos);
@@ -170,6 +176,26 @@ export function TodoShell() {
           </div>
         </section>
 
+        <section className="sidebar-panel">
+          <p className="eyebrow">{t.theme}</p>
+          <div className="language-row">
+            <button
+              className={`nav-item compact ${theme === 'dark' ? 'is-active' : ''}`}
+              onClick={() => void setTheme('dark')}
+              type="button"
+            >
+              {t.darkTheme}
+            </button>
+            <button
+              className={`nav-item compact ${theme === 'light' ? 'is-active' : ''}`}
+              onClick={() => void setTheme('light')}
+              type="button"
+            >
+              {t.lightTheme}
+            </button>
+          </div>
+        </section>
+
         <nav className="nav-list" aria-label="Primary">
           {(['today', 'all', 'upcoming', 'overdue', 'completed'] as TodoFilter[]).map((filter) => (
             <button
@@ -232,29 +258,37 @@ export function TodoShell() {
       </aside>
 
       <section className="workspace">
-        <header className="hero-panel">
+        <header className="workspace-header">
           <div>
-            <p className="eyebrow">{t.desktopMvp}</p>
-            <h2>{t.heroTitle}</h2>
-            <p className="hero-copy">{t.heroCopy}</p>
+            <p className="eyebrow">{t.workspaceLabel}</p>
+            <h2>{t.workspaceTitle}</h2>
+            <p className="hero-copy">{t.workspaceCopy}</p>
+          </div>
+          <div className="header-pills">
+            <span className="pill neutral-pill">
+              {metrics.total.toString().padStart(2, '0')} {t.totalTodos}
+            </span>
+            <span className="pill neutral-pill">
+              {metrics.highPriority.toString().padStart(2, '0')} {t.highPriority}
+            </span>
           </div>
         </header>
 
         <section className="panel-grid">
           <article className="metrics-panel">
-            <div>
+            <div className="metric-card metric-card-primary">
               <span className="metric-value">{metrics.total.toString().padStart(2, '0')}</span>
               <span className="metric-label">{t.totalTodos}</span>
             </div>
-            <div>
+            <div className="metric-card">
               <span className="metric-value">{metrics.completed.toString().padStart(2, '0')}</span>
               <span className="metric-label">{t.completed}</span>
             </div>
-            <div>
+            <div className="metric-card">
               <span className="metric-value">{metrics.highPriority.toString().padStart(2, '0')}</span>
               <span className="metric-label">{t.highPriority}</span>
             </div>
-            <div>
+            <div className="metric-card">
               <span className="metric-value">{metrics.overdue.toString().padStart(2, '0')}</span>
               <span className="metric-label">{t.overdueMetric}</span>
             </div>
@@ -284,7 +318,7 @@ export function TodoShell() {
               <div className="field-grid">
                 <label className="field">
                   <span>{t.priority}</span>
-                  <select className="text-input" {...form.register('priority')}>
+                  <select className="select-input" {...form.register('priority')}>
                     <option value="low">{t.low}</option>
                     <option value="medium">{t.medium}</option>
                     <option value="high">{t.high}</option>
@@ -293,7 +327,7 @@ export function TodoShell() {
 
                 <label className="field">
                   <span>{t.category}</span>
-                  <select className="text-input" {...form.register('categoryId')}>
+                  <select className="select-input" {...form.register('categoryId')}>
                     <option value="">{t.noCategory}</option>
                     {categories.map((category) => (
                       <option key={category.id} value={category.id}>
@@ -337,7 +371,7 @@ export function TodoShell() {
               <label className="field">
                 <span>{t.categoryFilter}</span>
                 <select
-                  className="text-input"
+                  className="select-input"
                   onChange={(event) => setCategoryFilter(event.target.value)}
                   value={query.categoryId}
                 >
@@ -353,7 +387,7 @@ export function TodoShell() {
               <label className="field">
                 <span>{t.priorityFilter}</span>
                 <select
-                  className="text-input"
+                  className="select-input"
                   onChange={(event) => setPriorityFilter(event.target.value as '' | TodoPriority)}
                   value={query.priority}
                 >

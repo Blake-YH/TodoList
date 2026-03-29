@@ -1,7 +1,7 @@
 import { invoke } from '@tauri-apps/api/core';
 
 import type { Category } from '@/types/category';
-import type { AppLanguage, AppSettings } from '@/types/settings';
+import type { AppLanguage, AppSettings, AppTheme } from '@/types/settings';
 import type { CreateTodoInput, Todo, TodoStatus, UpdateTodoInput } from '@/types/todo';
 
 type CreateCategoryInput = {
@@ -49,4 +49,8 @@ export async function removeCategory(categoryId: string) {
 
 export async function updateLanguage(language: AppLanguage) {
   return invoke<AppSettings>('update_language', { payload: { language } });
+}
+
+export async function updateTheme(theme: AppTheme) {
+  return invoke<AppSettings>('update_theme', { payload: { theme } });
 }

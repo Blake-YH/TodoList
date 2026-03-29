@@ -28,6 +28,7 @@ pub struct Category {
 #[serde(rename_all = "camelCase")]
 pub struct AppSettings {
   pub language: String,
+  pub theme: String,
 }
 
 #[derive(Debug, Deserialize)]
@@ -69,4 +70,10 @@ pub struct CreateCategoryPayload {
 #[serde(rename_all = "camelCase")]
 pub struct UpdateLanguagePayload {
   pub language: String,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct UpdateThemePayload {
+  pub theme: String,
 }

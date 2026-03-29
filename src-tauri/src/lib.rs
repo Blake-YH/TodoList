@@ -31,7 +31,8 @@ pub fn run() {
       commands::get_settings,
       commands::create_category,
       commands::delete_category,
-      commands::update_language
+      commands::update_language,
+      commands::update_theme
     ])
     .run(tauri::generate_context!())
     .expect("error while running tauri application");

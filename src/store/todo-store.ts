@@ -8,12 +8,13 @@ import {
   fetchTodos,
   removeCategory,
   removeTodo,
+  updateTheme,
   updateLanguage,
   updateTodo,
   updateTodoStatus,
 } from '@/services/todos';
 import type { Category } from '@/types/category';
-import type { AppLanguage } from '@/types/settings';
+import type { AppLanguage, AppTheme } from '@/types/settings';
 import type {
   CreateTodoInput,
   Todo,
@@ -28,12 +29,14 @@ type TodoStore = {
   todos: Todo[];
   categories: Category[];
   language: AppLanguage;
+  theme: AppTheme;
   query: TodoQuery;
   isBootstrapping: boolean;
   isSubmitting: boolean;
   error: string | null;
   initialize: () => Promise<void>;
   setLanguage: (language: AppLanguage) => Promise<void>;
+  setTheme: (theme: AppTheme) => Promise<void>;
   setActiveFilter: (filter: TodoFilter) => void;
   setCategoryFilter: (categoryId: string) => void;
   setPriorityFilter: (priority: '' | TodoPriority) => void;
@@ -49,6 +52,7 @@ export const useTodoStore = create<TodoStore>((set) => ({
   todos: [],
   categories: [],
   language: 'en',
+  theme: 'dark',
   query: {
     filter: 'today',
     categoryId: '',
@@ -70,6 +74,7 @@ export const useTodoStore = create<TodoStore>((set) => ({
         todos,
         categories,
         language: settings.language,
+        theme: settings.theme,
         isBootstrapping: false,
       });
     } catch (error) {
@@ -82,10 +87,20 @@ export const useTodoStore = create<TodoStore>((set) => ({
   async setLanguage(language) {
     try {
       const settings = await updateLanguage(language);
-      set({ language: settings.language });
+      set({ language: settings.language, theme: settings.theme });
     } catch (error) {
       set({
         error: error instanceof Error ? error.message : 'Failed to update language.',
+      });
+    }
+  },
+  async setTheme(theme) {
+    try {
+      const settings = await updateTheme(theme);
+      set({ language: settings.language, theme: settings.theme });
+    } catch (error) {
+      set({
+        error: error instanceof Error ? error.message : 'Failed to update theme.',
       });
     }
   },

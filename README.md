@@ -41,6 +41,7 @@ Recommended future screenshots:
 - main todo dashboard
 - category management panel
 - language switch state
+- theme switch state
 - packaged Windows installer result
 
 建议后续补充的截图：
@@ -103,8 +104,24 @@ Current package outputs:
 - Category create / filter / count / delete
 - Today / All / Upcoming / Overdue / Completed views
 - English / Simplified Chinese language switching
+- Dark / Light theme switching
 - Local SQLite persistence
 - Windows installer packaging
+
+## Latest UI Update | 最新界面更新
+**English**
+
+- Added dark / light theme switching
+- Theme preference is persisted locally
+- Dropdown controls are being aligned with the active theme for better readability
+- The old top MVP message card is being removed in favor of a cleaner workspace header
+
+**中文**
+
+- 新增深色 / 浅色主题切换
+- 主题选择会本地持久化保存
+- 下拉菜单会跟随当前主题统一背景色与文字可读性
+- 顶部旧版 MVP 说明卡片将移除，并改为更简洁的工作区头部
 
 - Todo 的新增 / 编辑 / 完成 / 重新打开 / 删除
 - 分类的创建 / 筛选 / 计数 / 删除

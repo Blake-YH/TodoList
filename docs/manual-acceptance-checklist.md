@@ -67,12 +67,17 @@ This checklist is used after the Windows installer is built and installed locall
 - Confirm todos still exist
 - Confirm categories still exist
 - Confirm completed state is preserved
+- Confirm selected language is preserved
+- Confirm selected theme is preserved
 
 ## Visual Review
 
 - Confirm brand colors are consistent
 - Confirm buttons and cards are aligned correctly
 - Confirm due-date badges show the correct tone for today, upcoming, and overdue items
+- Confirm dark theme and light theme both render correctly
+- Confirm priority, category, and filter dropdown menus use readable background and text colors in both themes
+- Confirm dropdown option text remains legible and visually consistent with the active theme
 
 ## Release Decision
 

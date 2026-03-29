@@ -25,6 +25,7 @@ It delivers a local-first desktop todo application with:
 - Category creation, filtering, counting, and deletion
 - Today, All, Upcoming, Overdue, and Completed views
 - English / Simplified Chinese language switching
+- Dark / Light theme switching
 - Windows installer packaging through Tauri
 
 ## Major Features
@@ -33,6 +34,7 @@ It delivers a local-first desktop todo application with:
 - Date-aware task views
 - Priority and category filtering
 - Local category management
+- Theme-aware desktop UI
 - Windows MSI and NSIS installer generation
 
 ## Technical Stack

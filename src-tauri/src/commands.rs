@@ -4,7 +4,7 @@ use crate::{
   db::{self, DatabaseState},
   models::{
     AppSettings, Category, CreateCategoryPayload, CreateTodoPayload, Todo, UpdateLanguagePayload,
-    UpdateTodoPayload, UpdateTodoStatusPayload,
+    UpdateThemePayload, UpdateTodoPayload, UpdateTodoStatusPayload,
   },
 };
 
@@ -101,4 +101,17 @@ pub fn update_language(
 
   let connection = state.connection.lock().map_err(|error| error.to_string())?;
   db::update_language(&connection, payload).map_err(|error| error.to_string())
+}
+
+#[tauri::command]
+pub fn update_theme(
+  payload: UpdateThemePayload,
+  state: State<'_, DatabaseState>,
+) -> Result<AppSettings, String> {
+  if payload.theme != "dark" && payload.theme != "light" {
+    return Err("Unsupported theme.".to_string());
+  }
+
+  let connection = state.connection.lock().map_err(|error| error.to_string())?;
+  db::update_theme(&connection, payload).map_err(|error| error.to_string())
 }

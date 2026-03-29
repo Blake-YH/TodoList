@@ -7,7 +7,7 @@ use uuid::Uuid;
 
 use crate::models::{
   AppSettings, Category, CreateCategoryPayload, CreateTodoPayload, Todo, UpdateLanguagePayload,
-  UpdateTodoPayload, UpdateTodoStatusPayload,
+  UpdateThemePayload, UpdateTodoPayload, UpdateTodoStatusPayload,
 };
 
 pub struct DatabaseState {
@@ -93,6 +93,10 @@ fn run_migrations(connection: &Connection) -> rusqlite::Result<()> {
     "INSERT OR IGNORE INTO settings (key, value) VALUES ('language', 'en')",
     [],
   )?;
+  connection.execute(
+    "INSERT OR IGNORE INTO settings (key, value) VALUES ('theme', 'dark')",
+    [],
+  )?;
 
   Ok(())
 }
@@ -103,8 +107,13 @@ pub fn get_settings(connection: &Connection) -> rusqlite::Result<AppSettings> {
     [],
     |row| row.get(0),
   )?;
+  let theme: String = connection.query_row(
+    "SELECT value FROM settings WHERE key = 'theme'",
+    [],
+    |row| row.get(0),
+  )?;
 
-  Ok(AppSettings { language })
+  Ok(AppSettings { language, theme })
 }
 
 pub fn update_language(
@@ -115,6 +124,19 @@ pub fn update_language(
     "INSERT INTO settings (key, value) VALUES ('language', ?1)
      ON CONFLICT(key) DO UPDATE SET value = excluded.value",
     params![payload.language],
+  )?;
+
+  get_settings(connection)
+}
+
+pub fn update_theme(
+  connection: &Connection,
+  payload: UpdateThemePayload,
+) -> rusqlite::Result<AppSettings> {
+  connection.execute(
+    "INSERT INTO settings (key, value) VALUES ('theme', ?1)
+     ON CONFLICT(key) DO UPDATE SET value = excluded.value",
+    params![payload.theme],
   )?;
 
   get_settings(connection)
