@@ -1,6 +1,6 @@
-﻿# TodoList
+# TodoList
 
-[English](README.md) | [涓枃](README.zh-CN.md)
+[English](README.md) | [中文](README.zh-CN.md)
 
 Local-first lightweight desktop todo app for Windows.
 
